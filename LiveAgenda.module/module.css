@@ -1,0 +1,468 @@
+/* ═══════════════════════════════════════════════
+   LiveAgenda Module — CSS Tab
+   Paste this into the CSS tab in Design Manager
+═══════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Barlow:wght@600;700;800&display=swap');
+
+.live26-agenda *,
+.live26-agenda *::before,
+.live26-agenda *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+.live26-agenda {
+  --green:            #84C361;
+  --green-dark:       #6aad49;
+  --green-accessible: #3d6b2a;
+  --green-light:      #e8f5e0;
+  --blue:             #0081B9;
+  --blue-dark:        #006694;
+  --blue-light:       #ddf0f8;
+  --gray-light:       #F2F3F3;
+  --gray-mid:         #E5E7E8;
+  --gray-dark:        #4B4F53;
+  --gray-company:     #5c6063;
+  --black:            #4B4F53;
+  --white:            #ffffff;
+  --font-display: 'Barlow', sans-serif;
+  --font-body:    'Inter', sans-serif;
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--black);
+  background: var(--white);
+  -webkit-font-smoothing: antialiased;
+  overflow: visible;
+  width: 100%;
+  max-width: none;
+}
+
+/* ── HERO ─────────────────────────────────────── */
+.live26-agenda .la-hero {
+  --la-hero-bg-color: #04416c;
+  --la-hero-overlay: 0.55;
+  background-color: var(--la-hero-bg-color);
+  background-image: none;
+  background-size: cover;
+  background-position: center 60%;
+  background-repeat: no-repeat;
+  color: #fff;
+  padding: 72px 2rem 64px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+  width: 100vw;
+  max-width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  margin-right: 0;
+}
+.live26-agenda .la-hero--image {
+  background-image: var(--la-hero-bg-image);
+  background-color: #001a28;
+}
+.live26-agenda .la-hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(4,65,108,0.65) 0%, rgba(4,65,108,0.55) 100%);
+  pointer-events: none;
+  z-index: 0;
+}
+.live26-agenda .la-hero--image::after {
+  background: rgba(0, 26, 40, var(--la-hero-overlay));
+}
+.live26-agenda .la-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  background-image: repeating-linear-gradient(-55deg, rgba(255,255,255,0.03) 0px, rgba(255,255,255,0.03) 1px, transparent 1px, transparent 40px);
+}
+.live26-agenda .la-hero-inner { position: relative; z-index: 1; max-width: 760px; margin: 0 auto; }
+.live26-agenda .la-hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #fff;
+  margin-bottom: 18px;
+}
+.live26-agenda .la-hero-eyebrow::before,
+.live26-agenda .la-hero-eyebrow::after {
+  content: '';
+  display: block;
+  width: 32px;
+  height: 1px;
+  background: #fff;
+  opacity: 0.5;
+}
+.live26-agenda .la-hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.6rem, 6vw, 4rem);
+  font-weight: 800;
+  line-height: 1.08;
+  color: #fff;
+  margin-bottom: 18px;
+}
+.live26-agenda .la-hero h1 span { color: var(--green); }
+.live26-agenda .la-hero p {
+  font-size: 17px;
+  color: #d4edf7;
+  max-width: 500px;
+  margin: 0 auto 32px;
+}
+.live26-agenda .la-hero-meta {
+  display: inline-flex;
+  gap: 24px;
+  align-items: center;
+  font-size: 13px;
+  color: #d4edf7;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.2);
+  padding: 10px 24px;
+  border-radius: 30px;
+}
+.live26-agenda .la-hero-meta strong { color: #fff; font-weight: 600; }
+.live26-agenda .la-hero-meta-div { width: 1px; height: 12px; background: rgba(255,255,255,0.3); }
+
+/* ── DAY TABS ──────────────────────────────────── */
+.live26-agenda .la-day-tabs {
+  background: #fff;
+  border-bottom: 1px solid var(--gray-mid);
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  flex-wrap: wrap;
+  width: 100vw;
+  max-width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  box-sizing: border-box;
+}
+.live26-agenda .la-day-tab {
+  background: transparent;
+  border: none;
+  border-bottom: 3px solid transparent;
+  color: var(--gray-dark);
+  padding: 16px 20px 13px;
+  font-size: 14px;
+  font-family: var(--font-body);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.18s;
+  white-space: nowrap;
+}
+.live26-agenda .la-day-tab:hover { color: var(--blue); border-bottom-color: var(--gray-mid); }
+.live26-agenda .la-day-tab.active { color: var(--blue); border-bottom-color: var(--green); font-weight: 600; }
+
+/* ── PAGE WRAP ─────────────────────────────────── */
+.live26-agenda .la-page-wrap { max-width: 1160px; margin: 0 auto; padding: 48px 2rem 80px; }
+.live26-agenda .la-day-panel { display: none; }
+.live26-agenda .la-day-panel.active { display: block; }
+.live26-agenda .la-day-panel--stacked {
+  border-top: 2px solid var(--gray-mid);
+  padding-top: 32px;
+  margin-top: 32px;
+}
+
+.live26-agenda .la-day-body {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* ── DAY HEADER ────────────────────────────────── */
+.live26-agenda .la-day-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+.live26-agenda .la-day-header-label {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--black);
+}
+.live26-agenda .la-day-header-sub {
+  font-size: 13px;
+  color: var(--gray-company);
+  font-weight: 500;
+  background: var(--gray-light);
+  border: 1px solid var(--gray-mid);
+  padding: 4px 12px;
+  border-radius: 20px;
+}
+
+/* ── TRACK LEGEND ──────────────────────────────── */
+.live26-agenda .la-track-legend {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+  padding: 14px 18px;
+  background: var(--gray-light);
+  border-radius: 8px;
+  border: 1px solid var(--gray-mid);
+}
+.live26-agenda .la-track-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--gray-dark);
+}
+.live26-agenda .la-track-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+.live26-agenda .dot-plenary  { background: var(--blue); }
+.live26-agenda .dot-food     { background: var(--green); }
+.live26-agenda .dot-health   { background: #9b59b6; }
+.live26-agenda .dot-k12      { background: #e67e22; }
+.live26-agenda .dot-break    { background: var(--gray-mid); }
+.live26-agenda .dot-social   { background: #e74c3c; }
+
+/* ── SCHEDULE ROWS ─────────────────────────────── */
+.live26-agenda .la-schedule-row {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.live26-agenda .la-schedule-time {
+  background: var(--gray-light);
+  border: 1px solid var(--gray-mid);
+  border-right: none;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 8px 0 0 8px;
+}
+.live26-agenda .la-time-start { font-size: 13px; font-weight: 600; color: var(--black); }
+.live26-agenda .la-time-end   { font-size: 11px; color: var(--gray-company); }
+
+.live26-agenda .la-schedule-content {
+  border: 1px solid var(--gray-mid);
+  border-left: 4px solid var(--blue);
+  padding: 12px 16px;
+  background: #fff;
+  border-radius: 0 8px 8px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.live26-agenda .la-schedule-content.food      { border-left-color: var(--green); }
+.live26-agenda .la-schedule-content.health    { border-left-color: #9b59b6; }
+.live26-agenda .la-schedule-content.k12       { border-left-color: #e67e22; }
+.live26-agenda .la-schedule-content.break-row { border-left-color: var(--gray-mid); background: var(--gray-light); }
+.live26-agenda .la-schedule-content.social    { border-left-color: #e74c3c; }
+.live26-agenda .la-schedule-content.lunch     { border-left-color: var(--gray-dark); background: #fafafa; }
+
+.live26-agenda .la-session-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--black);
+  line-height: 1.4;
+  margin-bottom: 2px;
+}
+.live26-agenda .la-session-meta { font-size: 12px; color: var(--gray-company); }
+.live26-agenda .la-session-badge {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 3px;
+  margin-bottom: 5px;
+  width: fit-content;
+}
+.live26-agenda .badge-plenary { background: var(--blue-light);  color: var(--blue-dark); }
+.live26-agenda .badge-food    { background: var(--green-light); color: #2e5220; }
+.live26-agenda .badge-health  { background: #f3e5f5; color: #6a1b9a; }
+.live26-agenda .badge-k12     { background: #fef3e2; color: #a04000; }
+.live26-agenda .badge-break   { background: var(--gray-light);  color: var(--gray-dark); }
+.live26-agenda .badge-social  { background: #fdecea; color: #b71c1c; }
+.live26-agenda .badge-lunch   { background: var(--gray-light);  color: var(--gray-dark); }
+
+/* ── TRACK SESSIONS ────────────────────────────── */
+.live26-agenda .la-track-row {
+  display: grid;
+  grid-template-columns: 120px 1fr 1fr 1fr;
+  gap: 6px;
+  align-items: stretch;
+}
+.live26-agenda .la-track-time {
+  background: var(--gray-light);
+  border: 1px solid var(--gray-mid);
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 8px;
+}
+.live26-agenda .la-track-time--break {
+  background: #fff;
+  border: 1px solid var(--gray-mid);
+}
+.live26-agenda .la-track-time--break .la-time-start { color: var(--gray-company); }
+.live26-agenda .la-track-cell {
+  border: 1px solid var(--gray-mid);
+  padding: 12px 14px;
+  border-radius: 8px;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 80px;
+}
+.live26-agenda .la-track-cell.food-cell   { border-top: 3px solid var(--green); }
+.live26-agenda .la-track-cell.health-cell { border-top: 3px solid #9b59b6; }
+.live26-agenda .la-track-cell.k12-cell    { border-top: 3px solid #e67e22; }
+.live26-agenda .la-track-cell.empty-cell  { background: var(--gray-light); border-style: dashed; }
+.live26-agenda .la-track-cell--span3 {
+  grid-column: span 3;
+  border-top: 1px solid var(--gray-mid);
+  background: var(--gray-light);
+  min-height: auto;
+}
+.live26-agenda .la-track-cell-title { font-size: 13px; font-weight: 600; color: var(--black); line-height: 1.4; }
+.live26-agenda .la-track-cell-title--muted { color: var(--gray-company); font-weight: 500; }
+.live26-agenda .la-track-cell.empty-cell .la-track-cell-title--muted { font-weight: 400; }
+.live26-agenda .la-track-cell-meta  { font-size: 11px; color: var(--gray-company); margin-top: 4px; }
+
+/* ── TRACK HEADER ROW ──────────────────────────── */
+.live26-agenda .la-track-header-row {
+  display: grid;
+  grid-template-columns: 120px 1fr 1fr 1fr;
+  gap: 6px;
+  margin-bottom: 0;
+}
+.live26-agenda .la-track-header-cell {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 8px 14px;
+  border-radius: 6px;
+  text-align: center;
+}
+.live26-agenda .la-track-header-cell.food-hdr   { background: var(--green-light); color: #2e5220; }
+.live26-agenda .la-track-header-cell.health-hdr { background: #f3e5f5; color: #6a1b9a; }
+.live26-agenda .la-track-header-cell.k12-hdr    { background: #fef3e2; color: #a04000; }
+.live26-agenda .la-track-header-cell.empty-hdr  { background: transparent; }
+
+/* ── SECTION DIVIDER ───────────────────────────── */
+.live26-agenda .la-section-spacer {
+  margin: 22px 0 14px;
+}
+.live26-agenda .la-section-label {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--black);
+}
+.live26-agenda .la-section-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--gray-mid);
+}
+
+/* ── CTA BAND ──────────────────────────────────── */
+.live26-agenda .la-cta-band {
+  --la-cta-bg: var(--blue);
+  background: var(--la-cta-bg);
+  padding: 64px 2rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  width: 100vw;
+  max-width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  box-sizing: border-box;
+}
+.live26-agenda .la-cta-band::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: repeating-linear-gradient(-55deg, rgba(255,255,255,0.03) 0px, rgba(255,255,255,0.03) 1px, transparent 1px, transparent 40px);
+}
+.live26-agenda .la-cta-band-inner { position: relative; }
+.live26-agenda .la-cta-band h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 10px;
+}
+.live26-agenda .la-cta-band p {
+  font-size: 16px;
+  color: #d4edf7;
+  max-width: 420px;
+  margin: 0 auto 30px;
+}
+.live26-agenda .la-cta-btn {
+  display: inline-block;
+  background: var(--green);
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 13px 34px;
+  border-radius: 6px;
+  transition: background 0.2s, transform 0.15s;
+}
+.live26-agenda .la-cta-btn:hover { background: var(--green-dark); transform: translateY(-1px); }
+.live26-agenda .la-cta-btn-ghost {
+  display: inline-block;
+  background: transparent;
+  color: #d4edf7;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
+  padding: 13px 24px;
+  margin-left: 10px;
+  border-radius: 6px;
+  border: 1px solid rgba(255,255,255,0.4);
+  transition: border-color 0.2s, color 0.2s;
+}
+.live26-agenda .la-cta-btn-ghost:hover { border-color: rgba(255,255,255,0.8); color: #fff; }
+
+/* ── RESPONSIVE ────────────────────────────────── */
+@media (max-width: 900px) {
+  .live26-agenda .la-track-row,
+  .live26-agenda .la-track-header-row { grid-template-columns: 90px 1fr 1fr; }
+  .live26-agenda .la-track-cell.k12-cell,
+  .live26-agenda .la-track-header-cell.k12-hdr { display: none; }
+  .live26-agenda .la-schedule-row { grid-template-columns: 90px 1fr; }
+  .live26-agenda .la-track-time,
+  .live26-agenda .la-schedule-time { padding: 10px; }
+  .live26-agenda .la-track-cell--span3 { grid-column: span 2; }
+}
+@media (max-width: 600px) {
+  .live26-agenda .la-track-row,
+  .live26-agenda .la-track-header-row { grid-template-columns: 70px 1fr; }
+  .live26-agenda .la-track-cell.health-cell,
+  .live26-agenda .la-track-header-cell.health-hdr { display: none; }
+  .live26-agenda .la-track-cell--span3 { grid-column: span 1; }
+  .live26-agenda .la-hero { padding: 52px 1.25rem 44px; }
+  .live26-agenda .la-page-wrap { padding: 32px 1.25rem 60px; }
+  .live26-agenda .la-day-tabs { padding: 0 1rem; }
+  .live26-agenda .la-cta-btn-ghost { margin-left: 0; margin-top: 10px; }
+}

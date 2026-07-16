@@ -1,0 +1,13 @@
+{
+  "label": "LiveAgenda",
+  "css_assets": [],
+  "js_assets": [],
+  "other_assets": [],
+  "external_js": [],
+  "global": false,
+  "content_types": ["LANDING_PAGE", "SITE_PAGE"],
+  "host_template_types": ["PAGE"],
+  "smart_type": "NOT_SMART",
+  "tags": ["LIVE26", "Agenda", "Events"],
+  "is_available_for_new_content": true
+}

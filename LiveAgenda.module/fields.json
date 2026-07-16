@@ -1,0 +1,2174 @@
+[
+  {
+    "id": "hero_bg_type",
+    "name": "hero_bg_type",
+    "label": "Hero Background Type",
+    "required": false,
+    "locked": false,
+    "display": "select",
+    "choices": [
+      [
+        "color",
+        "Solid Color"
+      ],
+      [
+        "image",
+        "Background Image"
+      ]
+    ],
+    "type": "choice",
+    "default": "color",
+    "help_text": "Choose a solid color or an uploaded image for the hero."
+  },
+  {
+    "id": "hero_bg_color",
+    "name": "hero_bg_color",
+    "label": "Hero Background Color",
+    "required": false,
+    "locked": false,
+    "type": "color",
+    "default": {
+      "color": "#04416c",
+      "opacity": 100
+    },
+    "visibility": {
+      "controlling_field": "hero_bg_type",
+      "controlling_value_regex": "color",
+      "operator": "EQUAL"
+    }
+  },
+  {
+    "id": "hero_bg_image",
+    "name": "hero_bg_image",
+    "label": "Hero Background Image",
+    "required": false,
+    "locked": false,
+    "responsive": true,
+    "resizable": true,
+    "type": "image",
+    "default": {
+      "src": "",
+      "alt": "",
+      "width": 1920,
+      "height": 800
+    },
+    "visibility": {
+      "controlling_field": "hero_bg_type",
+      "controlling_value_regex": "image",
+      "operator": "EQUAL"
+    }
+  },
+  {
+    "id": "hero_overlay_opacity",
+    "name": "hero_overlay_opacity",
+    "label": "Image Overlay Darkness (%)",
+    "required": false,
+    "locked": false,
+    "type": "number",
+    "display": "slider",
+    "min": 0,
+    "max": 100,
+    "step": 5,
+    "default": 55,
+    "help_text": "Darkens the image so white text stays readable.",
+    "visibility": {
+      "controlling_field": "hero_bg_type",
+      "controlling_value_regex": "image",
+      "operator": "EQUAL"
+    }
+  },
+  {
+    "id": "hero_eyebrow",
+    "name": "hero_eyebrow",
+    "label": "Hero Eyebrow",
+    "required": false,
+    "locked": false,
+    "type": "text",
+    "default": "SmartSense LIVE26 • Austin, TX"
+  },
+  {
+    "id": "hero_headline",
+    "name": "hero_headline",
+    "label": "Hero Headline",
+    "required": false,
+    "locked": false,
+    "type": "text",
+    "default": "LIVE26 Agenda",
+    "help_text": "Use the word Agenda to highlight it in green."
+  },
+  {
+    "id": "hero_subtext",
+    "name": "hero_subtext",
+    "label": "Hero Subtext",
+    "required": false,
+    "locked": false,
+    "type": "text",
+    "default": "Three days of sessions, networking, and hands-on learning in Austin, Texas."
+  },
+  {
+    "id": "hero_date",
+    "name": "hero_date",
+    "label": "Event Dates",
+    "required": false,
+    "locked": false,
+    "type": "text",
+    "default": "October 7–9, 2026"
+  },
+  {
+    "id": "hero_venue",
+    "name": "hero_venue",
+    "label": "Event Venue",
+    "required": false,
+    "locked": false,
+    "type": "text",
+    "default": "Hyatt Regency Austin"
+  },
+  {
+    "id": "default_day",
+    "name": "default_day",
+    "label": "Default Day Tab",
+    "required": false,
+    "locked": false,
+    "display": "select",
+    "choices": [
+      [
+        "all",
+        "All Days"
+      ],
+      [
+        "wed",
+        "Wednesday"
+      ],
+      [
+        "thu",
+        "Thursday"
+      ],
+      [
+        "fri",
+        "Friday"
+      ]
+    ],
+    "type": "choice",
+    "default": "wed",
+    "help_text": "Which day tab is selected when the page loads."
+  },
+  {
+    "id": "all_days_label",
+    "name": "all_days_label",
+    "label": "All Days Tab Label",
+    "required": false,
+    "locked": false,
+    "type": "text",
+    "default": "All Days"
+  },
+  {
+    "id": "cta_headline",
+    "name": "cta_headline",
+    "label": "CTA Headline",
+    "required": false,
+    "locked": false,
+    "type": "text",
+    "default": "Join us in Austin this October"
+  },
+  {
+    "id": "cta_subtext",
+    "name": "cta_subtext",
+    "label": "CTA Subtext",
+    "required": false,
+    "locked": false,
+    "type": "text",
+    "default": "Three days of sessions, networking, and hands-on learning. Limited seats available."
+  },
+  {
+    "id": "cta_bg_color",
+    "name": "cta_bg_color",
+    "label": "CTA Background Color",
+    "required": false,
+    "locked": false,
+    "type": "color",
+    "default": {
+      "color": "#0081B9",
+      "opacity": 100
+    }
+  },
+  {
+    "id": "cta_text",
+    "name": "cta_text",
+    "label": "CTA Button Text",
+    "required": false,
+    "locked": false,
+    "type": "text",
+    "default": "Register now"
+  },
+  {
+    "id": "cta_url",
+    "name": "cta_url",
+    "label": "CTA Button URL",
+    "required": false,
+    "locked": false,
+    "supported_types": [
+      "EXTERNAL",
+      "CONTENT"
+    ],
+    "type": "url",
+    "default": {
+      "content_id": null,
+      "href": "https://www.eventbrite.com/e/smartsense-live26-user-conference-and-industry-summit-tickets-1977737146043",
+      "type": "EXTERNAL"
+    }
+  },
+  {
+    "id": "cta_secondary_text",
+    "name": "cta_secondary_text",
+    "label": "Secondary CTA Text",
+    "required": false,
+    "locked": false,
+    "type": "text",
+    "default": "Learn about LIVE26"
+  },
+  {
+    "id": "cta_secondary_url",
+    "name": "cta_secondary_url",
+    "label": "Secondary CTA URL",
+    "required": false,
+    "locked": false,
+    "supported_types": [
+      "EXTERNAL",
+      "CONTENT"
+    ],
+    "type": "url",
+    "default": {
+      "content_id": null,
+      "href": "https://www.smartsense.co/live26",
+      "type": "EXTERNAL"
+    }
+  },
+  {
+    "id": "days",
+    "name": "days",
+    "label": "Agenda Days",
+    "required": false,
+    "locked": false,
+    "type": "group",
+    "occurrence": {
+      "min": 1,
+      "max": 10,
+      "default": 3,
+      "sorting_label_field": "tab_label"
+    },
+    "help_text": "Day tabs and headers only. Schedule rows are edited in Schedule Items below.",
+    "default": [
+      {
+        "day_key": "wed",
+        "tab_label": "Wednesday, Oct 7",
+        "header_label": "Wednesday, October 7",
+        "header_sub": "Customer Day",
+        "legend_plenary": true,
+        "legend_food": false,
+        "legend_health": false,
+        "legend_k12": false,
+        "legend_break": true,
+        "legend_social": true
+      },
+      {
+        "day_key": "thu",
+        "tab_label": "Thursday, Oct 8",
+        "header_label": "Thursday, October 8",
+        "header_sub": "",
+        "legend_plenary": true,
+        "legend_food": true,
+        "legend_health": true,
+        "legend_k12": true,
+        "legend_break": true,
+        "legend_social": true
+      },
+      {
+        "day_key": "fri",
+        "tab_label": "Friday, Oct 9",
+        "header_label": "Friday, October 9",
+        "header_sub": "8:45 AM – 2:00 PM",
+        "legend_plenary": true,
+        "legend_food": true,
+        "legend_health": true,
+        "legend_k12": true,
+        "legend_break": true,
+        "legend_social": false
+      }
+    ],
+    "children": [
+      {
+        "id": "day_key",
+        "name": "day_key",
+        "label": "Day Key",
+        "required": false,
+        "locked": false,
+        "display": "select",
+        "choices": [
+          [
+            "wed",
+            "Wednesday"
+          ],
+          [
+            "thu",
+            "Thursday"
+          ],
+          [
+            "fri",
+            "Friday"
+          ],
+          [
+            "sat",
+            "Saturday"
+          ],
+          [
+            "sun",
+            "Sunday"
+          ],
+          [
+            "day1",
+            "Day 1"
+          ],
+          [
+            "day2",
+            "Day 2"
+          ],
+          [
+            "day3",
+            "Day 3"
+          ]
+        ],
+        "type": "choice",
+        "default": "wed",
+        "help_text": "Must match the Day on schedule items."
+      },
+      {
+        "id": "tab_label",
+        "name": "tab_label",
+        "label": "Tab Label",
+        "required": false,
+        "locked": false,
+        "type": "text",
+        "default": "Wednesday, Oct 7"
+      },
+      {
+        "id": "header_label",
+        "name": "header_label",
+        "label": "Day Header",
+        "required": false,
+        "locked": false,
+        "type": "text",
+        "default": "Wednesday, October 7"
+      },
+      {
+        "id": "header_sub",
+        "name": "header_sub",
+        "label": "Day Subtitle / Badge",
+        "required": false,
+        "locked": false,
+        "type": "text",
+        "default": "Customer Day",
+        "help_text": "Optional pill next to the day header."
+      },
+      {
+        "id": "legend_plenary",
+        "name": "legend_plenary",
+        "label": "Legend: General Session",
+        "required": false,
+        "locked": false,
+        "type": "boolean",
+        "default": true,
+        "display": "checkbox"
+      },
+      {
+        "id": "legend_food",
+        "name": "legend_food",
+        "label": "Legend: Food Service",
+        "required": false,
+        "locked": false,
+        "type": "boolean",
+        "default": false,
+        "display": "checkbox"
+      },
+      {
+        "id": "legend_health",
+        "name": "legend_health",
+        "label": "Legend: Healthcare",
+        "required": false,
+        "locked": false,
+        "type": "boolean",
+        "default": false,
+        "display": "checkbox"
+      },
+      {
+        "id": "legend_k12",
+        "name": "legend_k12",
+        "label": "Legend: K12",
+        "required": false,
+        "locked": false,
+        "type": "boolean",
+        "default": false,
+        "display": "checkbox"
+      },
+      {
+        "id": "legend_break",
+        "name": "legend_break",
+        "label": "Legend: Break / Meal",
+        "required": false,
+        "locked": false,
+        "type": "boolean",
+        "default": true,
+        "display": "checkbox"
+      },
+      {
+        "id": "legend_social",
+        "name": "legend_social",
+        "label": "Legend: Social",
+        "required": false,
+        "locked": false,
+        "type": "boolean",
+        "default": true,
+        "display": "checkbox"
+      }
+    ]
+  },
+  {
+    "id": "wed_items",
+    "name": "wed_items",
+    "label": "Wednesday Schedule",
+    "required": false,
+    "locked": false,
+    "type": "group",
+    "occurrence": {
+      "min": 0,
+      "max": 80,
+      "default": 6,
+      "sorting_label_field": "list_label"
+    },
+    "help_text": "Sessions and breakouts for Wednesday.",
+    "default": [
+      {
+        "list_label": "9:00 AM — Joint BOA Meeting",
+        "item_type": "session",
+        "section_label": "",
+        "time_start": "9:00 AM",
+        "time_end": "1:00 PM",
+        "session_style": "general",
+        "badge_text": "General Session",
+        "title": "Joint BOA Meeting",
+        "meta": "4 hours",
+        "is_full_width_break": false,
+        "break_label": "",
+        "food_title": "",
+        "food_meta": "",
+        "food_empty": false,
+        "health_title": "",
+        "health_meta": "",
+        "health_empty": false,
+        "k12_title": "",
+        "k12_meta": "",
+        "k12_empty": false
+      },
+      {
+        "list_label": "12:30 PM — Attendee Lunch",
+        "item_type": "session",
+        "section_label": "",
+        "time_start": "12:30 PM",
+        "time_end": "1:30 PM",
+        "session_style": "lunch",
+        "badge_text": "Meal",
+        "title": "Attendee Lunch",
+        "meta": "1 hour",
+        "is_full_width_break": false,
+        "break_label": "",
+        "food_title": "",
+        "food_meta": "",
+        "food_empty": false,
+        "health_title": "",
+        "health_meta": "",
+        "health_empty": false,
+        "k12_title": "",
+        "k12_meta": "",
+        "k12_empty": false
+      },
+      {
+        "list_label": "1:30 PM — LIVE26 Kickoff: Opening, Innovation Upda",
+        "item_type": "session",
+        "section_label": "",
+        "time_start": "1:30 PM",
+        "time_end": "3:00 PM",
+        "session_style": "general",
+        "badge_text": "General Session",
+        "title": "LIVE26 Kickoff: Opening, Innovation Update & Customer Spotlight",
+        "meta": "1.5 hours",
+        "is_full_width_break": false,
+        "break_label": "",
+        "food_title": "",
+        "food_meta": "",
+        "food_empty": false,
+        "health_title": "",
+        "health_meta": "",
+        "health_empty": false,
+        "k12_title": "",
+        "k12_meta": "",
+        "k12_empty": false
+      },
+      {
+        "list_label": "3:00 PM — Break",
+        "item_type": "session",
+        "section_label": "",
+        "time_start": "3:00 PM",
+        "time_end": "3:15 PM",
+        "session_style": "break-row",
+        "badge_text": "Break",
+        "title": "Break",
+        "meta": "15 min",
+        "is_full_width_break": false,
+        "break_label": "",
+        "food_title": "",
+        "food_meta": "",
+        "food_empty": false,
+        "health_title": "",
+        "health_meta": "",
+        "health_empty": false,
+        "k12_title": "",
+        "k12_meta": "",
+        "k12_empty": false
+      },
+      {
+        "list_label": "3:15 PM — Idea Incubator",
+        "item_type": "session",
+        "section_label": "",
+        "time_start": "3:15 PM",
+        "time_end": "5:15 PM",
+        "session_style": "general",
+        "badge_text": "General Session",
+        "title": "Idea Incubator",
+        "meta": "2 hours",
+        "is_full_width_break": false,
+        "break_label": "",
+        "food_title": "",
+        "food_meta": "",
+        "food_empty": false,
+        "health_title": "",
+        "health_meta": "",
+        "health_empty": false,
+        "k12_title": "",
+        "k12_meta": "",
+        "k12_empty": false
+      },
+      {
+        "list_label": "7:00 PM — Evening Mixer + Daniel Harel (close-up m",
+        "item_type": "session",
+        "section_label": "",
+        "time_start": "7:00 PM",
+        "time_end": "10:00 PM",
+        "session_style": "social",
+        "badge_text": "Social",
+        "title": "Evening Mixer + Daniel Harel (close-up magic)",
+        "meta": "3 hours",
+        "is_full_width_break": false,
+        "break_label": "",
+        "food_title": "",
+        "food_meta": "",
+        "food_empty": false,
+        "health_title": "",
+        "health_meta": "",
+        "health_empty": false,
+        "k12_title": "",
+        "k12_meta": "",
+        "k12_empty": false
+      }
+    ],
+    "children": [
+      {
+        "id": "wed_items_list_label",
+        "name": "list_label",
+        "label": "List Label",
+        "required": false,
+        "locked": false,
+        "type": "text",
+        "default": "",
+        "help_text": "Shown in the sidebar list so you can find this row. e.g. 9:00 AM — Kickoff"
+      },
+      {
+        "id": "wed_items_item_type",
+        "name": "item_type",
+        "label": "Item Type",
+        "required": false,
+        "locked": false,
+        "display": "select",
+        "choices": [
+          [
+            "session",
+            "Full-width session"
+          ],
+          [
+            "section_label",
+            "Section label"
+          ],
+          [
+            "track_headers",
+            "Breakout track headers"
+          ],
+          [
+            "breakout_row",
+            "Breakout track row"
+          ]
+        ],
+        "type": "choice",
+        "default": "session",
+        "help_text": "Choose how this row renders on the agenda."
+      },
+      {
+        "id": "wed_items_section_label",
+        "name": "section_label",
+        "label": "Section Label",
+        "required": false,
+        "locked": false,
+        "type": "text",
+        "default": "",
+        "help_text": "Shown when Item Type is Section label.",
+        "visibility": {
+          "controlling_field": "wed_items_item_type",
+          "controlling_value_regex": "section_label",
+          "operator": "EQUAL"
+        }
+      },
+      {
+        "id": "wed_items_time_start",
+        "name": "time_start",
+        "label": "Start Time",
+        "required": false,
+        "locked": false,
+        "type": "text",
+        "default": ""
+      },
+      {
+        "id": "wed_items_time_end",
+        "name": "time_end",
+        "label": "End Time",
+        "required": false,
+        "locked": false,
+        "type": "text",
+        "default": ""
+      },
+      {
+        "id": "wed_items_session_style",
+        "name": "session_style",
+        "label": "Session Style",
+        "required": false,
+        "locked": false,
+        "display": "select",
+        "choices": [
+          [
+            "general",
+            "General / Plenary (blue)"
+          ],
+          [
+            "food",
+            "Food Service (green)"
+          ],
+          [
+            "health",
+            "Healthcare (purple)"
+          ],
+          [
+            "k12",
+            "K12 (orange)"
+          ],
+          [
+            "break-row",
+            "Break / Free Time (gray)"
+          ],
+          [
+            "social",
+            "Social / Closing (red)"
+          ],
+          [
+            "lunch",
+            "Meal (dark)"
+          ]
+        ],
+        "type": "choice",
+        "default": "general",
+        "visibility": {
+          "controlling_field": "wed_items_item_type",
+          "controlling_value_regex": "session",
+          "operator": "EQUAL"
+        }
+      },
+      {
+        "id": "wed_items_badge_text",
+        "name": "badge_text",
+        "label": "Badge Text",
+        "required": false,
+        "locked": false,
+        "type": "text",
+        "default": "",
+        "help_text": "e.g. Keynote, Panel, Meal, Break",
+        "visibility": {
+          "controlling_field": "wed_items_item_type",
+          "controlling_value_regex": "session",
+          "operator": "EQUAL"
+        }
+      },
+      {
+        "id": "wed_items_title",
+        "name": "title",
+        "label": "Session Title",
+        "required": false,
+        "locked": false,
+        "type": "text",
+        "default": "",
+        "visibility": {
+          "controlling_field": "wed_items_item_type",
+          "controlling_value_regex": "session",
+          "operator": "EQUAL"
+        }
+      },
+      {
+        "id": "wed_items_meta",
+        "name": "meta",
+        "label": "Session Meta",
+        "required": false,
+        "locked": false,
+        "type": "text",
+        "default": "",
+        "help_text": "Duration, speakers, or other details under the title.",
+        "visibility": {
+          "controlling_field": "wed_items_item_type",
+          "controlling_value_regex": "session",
+          "operator": "EQUAL"
+        }
+      },
+      {
+        "id": "wed_items_is_full_width_break",
+        "name": "is_full_width_break",
+        "label": "Full-width break (spans all tracks)",
+        "required": false,
+        "locked": false,
+        "type": "boolean",
+        "default": false,
+        "display": "checkbox",
+        "visibility": {
+          "controlling_field": "wed_items_item_type",
+          "controlling_value_regex": "breakout_row",
+          "operator": "EQUAL"
+        }
+      },
+      {
+        "id": "wed_items_break_label",
+        "name": "break_label",
+        "label": "Break Label",
+        "required": false,
+        "locked": false,
+        "type": "text",
+        "default": "Break — 15 min",
+        "visibility": {
+          "controlling_field": "wed_items_is_full_width_break",
+          "controlling_value_regex": "true",
+          "operator": "EQUAL"
+        }
+      },
+      {
+        "id": "wed_items_food_title",
+        "name": "food_title",
+        "label": "Food Service — Title",
+        "required": false,
+        "locked": false,
+        "type": "text",
+        "default": "",
+        "visibility": {
+          "controlling_field": "wed_items_item_type",
+          "controlling_value_regex": "breakout_row",
+          "operator": "EQUAL"
+        }
+      },
+      {
+        "id": "wed_items_food_meta",
+        "name": "food_meta",
+        "label": "Food Service — Meta",
+        "required": false,
+        "locked": false,
+        "type": "text",
+        "default": "",
+        "visibility": {
+          "controlling_field": "wed_items_item_type",
+          "controlling_value_regex": "breakout_row",
+          "operator": "EQUAL"
+        }
+      },
+      {
+        "id": "wed_items_food_empty",
+        "name": "food_empty",
+        "label": "Food Service — Empty / TBD",
+        "required": false,
+        "locked": false,
+        "type": "boolean",
+        "default": false,
+        "display": "checkbox",
+        "visibility": {
+          "controlling_field": "wed_items_item_type",
+          "controlling_value_regex": "breakout_row",
+          "operator": "EQUAL"
+        }
+      },
+      {
+        "id": "wed_items_health_title",
+        "name": "health_title",
+        "label": "Healthcare — Title",
+        "required": false,
+        "locked": false,
+        "type": "text",
+        "default": "",
+        "visibility": {
+          "controlling_field": "wed_items_item_type",
+          "controlling_value_regex": "breakout_row",
+          "operator": "EQUAL"
+        }
+      },
+      {
+        "id": "wed_items_health_meta",
+        "name": "health_meta",
+        "label": "Healthcare — Meta",
+        "required": false,
+        "locked": false,
+        "type": "text",
+        "default": "",
+        "visibility": {
+          "controlling_field": "wed_items_item_type",
+          "controlling_value_regex": "breakout_row",
+          "operator": "EQUAL"
+        }
+      },
+      {
+        "id": "wed_items_health_empty",
+        "name": "health_empty",
+        "label": "Healthcare — Empty / TBD",
+        "required": false,
+        "locked": false,
+        "type": "boolean",
+        "default": false,
+        "display": "checkbox",
+        "visibility": {
+          "controlling_field": "wed_items_item_type",
+          "controlling_value_regex": "breakout_row",
+          "operator": "EQUAL"
+        }
+      },
+      {
+        "id": "wed_items_k12_title",
+        "name": "k12_title",
+        "label": "K12 — Title",
+        "required": false,
+        "locked": false,
+        "type": "text",
+        "default": "",
+        "visibility": {
+          "controlling_field": "wed_items_item_type",
+          "controlling_value_regex": "breakout_row",
+          "operator": "EQUAL"
+        }
+      },
+      {
+        "id": "wed_items_k12_meta",
+        "name": "k12_meta",
+        "label": "K12 — Meta",
+        "required": false,
+        "locked": false,
+        "type": "text",
+        "default": "",
+        "visibility": {
+          "controlling_field": "wed_items_item_type",
+          "controlling_value_regex": "breakout_row",
+          "operator": "EQUAL"
+        }
+      },
+      {
+        "id": "wed_items_k12_empty",
+        "name": "k12_empty",
+        "label": "K12 — Empty / TBD",
+        "required": false,
+        "locked": false,
+        "type": "boolean",
+        "default": false,
+        "display": "checkbox",
+        "visibility": {
+          "controlling_field": "wed_items_item_type",
+          "controlling_value_regex": "breakout_row",
+          "operator": "EQUAL"
+        }
+      }
+    ]
+  },
+  {
+    "id": "thu_items",
+    "name": "thu_items",
+    "label": "Thursday Schedule",
+    "required": false,
+    "locked": false,
+    "type": "group",
+    "occurrence": {
+      "min": 0,
+      "max": 80,
+      "default": 16,
+      "sorting_label_field": "list_label"
+    },
+    "help_text": "Sessions and breakouts for Thursday.",
+    "default": [
+      {
+        "list_label": "7:30 AM — Attendee Breakfast",
+        "item_type": "session",
+        "section_label": "",
+        "time_start": "7:30 AM",
+        "time_end": "8:30 AM",
+        "session_style": "lunch",
+        "badge_text": "Meal",
+        "title": "Attendee Breakfast",
+        "meta": "1 hour",
+        "is_full_width_break": false,
+        "break_label": "",
+        "food_title": "",
+        "food_meta": "",
+        "food_empty": false,
+        "health_title": "",
+        "health_meta": "",
+        "health_empty": false,
+        "k12_title": "",
+        "k12_meta": "",
+        "k12_empty": false
+      },
+      {
+        "list_label": "8:30 AM — Event Open — MC",
+        "item_type": "session",
+        "section_label": "",
+        "time_start": "8:30 AM",
+        "time_end": "8:45 AM",
+        "session_style": "general",
+        "badge_text": "General Session",
+        "title": "Event Open — MC",
+        "meta": "15 min",
+        "is_full_width_break": false,
+        "break_label": "",
+        "food_title": "",
+        "food_meta": "",
+        "food_empty": false,
+        "health_title": "",
+        "health_meta": "",
+        "health_empty": false,
+        "k12_title": "",
+        "k12_meta": "",
+        "k12_empty": false
+      },
+      {
+        "list_label": "8:45 AM — Industry Keynote — To Be Announced",
+        "item_type": "session",
+        "section_label": "",
+        "time_start": "8:45 AM",
+        "time_end": "9:45 AM",
+        "session_style": "general",
+        "badge_text": "Keynote",
+        "title": "Industry Keynote — To Be Announced",
+        "meta": "1 hour",
+        "is_full_width_break": false,
+        "break_label": "",
+        "food_title": "",
+        "food_meta": "",
+        "food_empty": false,
+        "health_title": "",
+        "health_meta": "",
+        "health_empty": false,
+        "k12_title": "",
+        "k12_meta": "",
+        "k12_empty": false
+      },
+      {
+        "list_label": "9:45 AM — Break",
+        "item_type": "session",
+        "section_label": "",
+        "time_start": "9:45 AM",
+        "time_end": "10:00 AM",
+        "session_style": "break-row",
+        "badge_text": "Break",
+        "title": "Break",
+        "meta": "15 min",
+        "is_full_width_break": false,
+        "break_label": "",
+        "food_title": "",
+        "food_meta": "",
+        "food_empty": false,
+        "health_title": "",
+        "health_meta": "",
+        "health_empty": false,
+        "k12_title": "",
+        "k12_meta": "",
+        "k12_empty": false
+      },
+      {
+        "list_label": "10:15 AM — AI's Real Operational Risk: Plausibly Wr",
+        "item_type": "session",
+        "section_label": "",
+        "time_start": "10:15 AM",
+        "time_end": "11:00 AM",
+        "session_style": "general",
+        "badge_text": "Panel",
+        "title": "AI's Real Operational Risk: Plausibly Wrong Output That Nobody Validates",
+        "meta": "Led by Gil — 45 min",
+        "is_full_width_break": false,
+        "break_label": "",
+        "food_title": "",
+        "food_meta": "",
+        "food_empty": false,
+        "health_title": "",
+        "health_meta": "",
+        "health_empty": false,
+        "k12_title": "",
+        "k12_meta": "",
+        "k12_empty": false
+      },
+      {
+        "list_label": "11:00 AM — Loss Prevention Panel: Food Loss, Food S",
+        "item_type": "session",
+        "section_label": "",
+        "time_start": "11:00 AM",
+        "time_end": "11:45 AM",
+        "session_style": "general",
+        "badge_text": "Panel",
+        "title": "Loss Prevention Panel: Food Loss, Food Safety & Loss Prevention",
+        "meta": "Meijer, Amazon, Luxottica, Weis — 45 min",
+        "is_full_width_break": false,
+        "break_label": "",
+        "food_title": "",
+        "food_meta": "",
+        "food_empty": false,
+        "health_title": "",
+        "health_meta": "",
+        "health_empty": false,
+        "k12_title": "",
+        "k12_meta": "",
+        "k12_empty": false
+      },
+      {
+        "list_label": "11:45 AM — Lunch",
+        "item_type": "session",
+        "section_label": "",
+        "time_start": "11:45 AM",
+        "time_end": "12:30 PM",
+        "session_style": "lunch",
+        "badge_text": "Meal",
+        "title": "Lunch",
+        "meta": "45 min",
+        "is_full_width_break": false,
+        "break_label": "",
+        "food_title": "",
+        "food_meta": "",
+        "food_empty": false,
+        "health_title": "",
+        "health_meta": "",
+        "health_empty": false,
+        "k12_title": "",
+        "k12_meta": "",
+        "k12_empty": false
+      },
+      {
+        "list_label": "Breakout Sessions — 12:30 PM to 3:45 PM",
+        "item_type": "section_label",
+        "section_label": "Breakout Sessions — 12:30 PM to 3:45 PM",
+        "time_start": "",
+        "time_end": "",
+        "session_style": "general",
+        "badge_text": "",
+        "title": "",
+        "meta": "",
+        "is_full_width_break": false,
+        "break_label": "",
+        "food_title": "",
+        "food_meta": "",
+        "food_empty": false,
+        "health_title": "",
+        "health_meta": "",
+        "health_empty": false,
+        "k12_title": "",
+        "k12_meta": "",
+        "k12_empty": false
+      },
+      {
+        "list_label": "Breakout track headers",
+        "item_type": "track_headers",
+        "section_label": "",
+        "time_start": "",
+        "time_end": "",
+        "session_style": "general",
+        "badge_text": "",
+        "title": "",
+        "meta": "",
+        "is_full_width_break": false,
+        "break_label": "",
+        "food_title": "",
+        "food_meta": "",
+        "food_empty": false,
+        "health_title": "",
+        "health_meta": "",
+        "health_empty": false,
+        "k12_title": "",
+        "k12_meta": "",
+        "k12_empty": false
+      },
+      {
+        "list_label": "12:30 PM — Breakouts",
+        "item_type": "breakout_row",
+        "section_label": "",
+        "time_start": "12:30 PM",
+        "time_end": "1:15 PM",
+        "session_style": "general",
+        "badge_text": "",
+        "title": "",
+        "meta": "",
+        "is_full_width_break": false,
+        "break_label": "",
+        "food_title": "What Every Operator Should Know Before Expanding",
+        "food_meta": "Jen Crichfield — Chicken Salad Chick",
+        "food_empty": false,
+        "health_title": "Why Great Cultures Create Great Outcomes",
+        "health_meta": "Richard Corder",
+        "health_empty": false,
+        "k12_title": "Building Trust Beyond the Cafeteria",
+        "k12_meta": "Strategies for strengthening confidence with parents, administrators & school boards",
+        "k12_empty": false
+      },
+      {
+        "list_label": "1:15 PM — Breakouts",
+        "item_type": "breakout_row",
+        "section_label": "",
+        "time_start": "1:15 PM",
+        "time_end": "2:00 PM",
+        "session_style": "general",
+        "badge_text": "",
+        "title": "",
+        "meta": "",
+        "is_full_width_break": false,
+        "break_label": "",
+        "food_title": "Scaling Hospitality: What It Takes to Grow a Restaurant Brand Without Losing Your Soul",
+        "food_meta": "JP Thomas — honeygrow",
+        "food_empty": false,
+        "health_title": "The Compliance Blind Spot: Building a Regulatory Intelligence Program",
+        "health_meta": "Jacob Creel — Walmart",
+        "health_empty": false,
+        "k12_title": "High-Performing School Nutrition Teams",
+        "k12_meta": "Recruiting, developing & retaining exceptional staff",
+        "k12_empty": false
+      },
+      {
+        "list_label": "2:00 PM — Break",
+        "item_type": "breakout_row",
+        "section_label": "",
+        "time_start": "2:00 PM",
+        "time_end": "2:15 PM",
+        "session_style": "general",
+        "badge_text": "",
+        "title": "",
+        "meta": "",
+        "is_full_width_break": true,
+        "break_label": "Break — 15 min",
+        "food_title": "",
+        "food_meta": "",
+        "food_empty": false,
+        "health_title": "",
+        "health_meta": "",
+        "health_empty": false,
+        "k12_title": "",
+        "k12_meta": "",
+        "k12_empty": false
+      },
+      {
+        "list_label": "2:15 PM — Breakouts",
+        "item_type": "breakout_row",
+        "section_label": "",
+        "time_start": "2:15 PM",
+        "time_end": "3:00 PM",
+        "session_style": "general",
+        "badge_text": "",
+        "title": "",
+        "meta": "",
+        "is_full_width_break": false,
+        "break_label": "",
+        "food_title": "Food Safety Culture vs. High Turnover: The Behavioral Microbiology of Modern Kitchens",
+        "food_meta": "Dr. Zahra Mohammad — Sushic",
+        "food_empty": false,
+        "health_title": "When the Unexpected Happens: Building Operational Resilience",
+        "health_meta": "Brian Lair — Brookshire Brothers",
+        "health_empty": false,
+        "k12_title": "TBD",
+        "k12_meta": "",
+        "k12_empty": true
+      },
+      {
+        "list_label": "3:00 PM — Breakouts",
+        "item_type": "breakout_row",
+        "section_label": "",
+        "time_start": "3:00 PM",
+        "time_end": "3:45 PM",
+        "session_style": "general",
+        "badge_text": "",
+        "title": "",
+        "meta": "",
+        "is_full_width_break": false,
+        "break_label": "",
+        "food_title": "Beyond the Cafeteria Report: Parent Perspectives on Food Safety",
+        "food_meta": "PAN Study Panel",
+        "food_empty": false,
+        "health_title": "Healthcare Session",
+        "health_meta": "Joel Vengco",
+        "health_empty": false,
+        "k12_title": "TBD",
+        "k12_meta": "",
+        "k12_empty": true
+      },
+      {
+        "list_label": "3:45 PM — Open Time",
+        "item_type": "session",
+        "section_label": "",
+        "time_start": "3:45 PM",
+        "time_end": "6:00 PM",
+        "session_style": "break-row",
+        "badge_text": "Free Time",
+        "title": "Open Time",
+        "meta": "2h 15 min",
+        "is_full_width_break": false,
+        "break_label": "",
+        "food_title": "",
+        "food_meta": "",
+        "food_empty": false,
+        "health_title": "",
+        "health_meta": "",
+        "health_empty": false,
+        "k12_title": "",
+        "k12_meta": "",
+        "k12_empty": false
+      },
+      {
+        "list_label": "6:00 PM — LIVE26 Celebration",
+        "item_type": "session",
+        "section_label": "",
+        "time_start": "6:00 PM",
+        "time_end": "10:00 PM",
+        "session_style": "social",
+        "badge_text": "Social",
+        "title": "LIVE26 Celebration",
+        "meta": "4 hours — Honoring Austin local traditions with food, drinks & surprises",
+        "is_full_width_break": false,
+        "break_label": "",
+        "food_title": "",
+        "food_meta": "",
+        "food_empty": false,
+        "health_title": "",
+        "health_meta": "",
+        "health_empty": false,
+        "k12_title": "",
+        "k12_meta": "",
+        "k12_empty": false
+      }
+    ],
+    "children": [
+      {
+        "id": "thu_items_list_label",
+        "name": "list_label",
+        "label": "List Label",
+        "required": false,
+        "locked": false,
+        "type": "text",
+        "default": "",
+        "help_text": "Shown in the sidebar list so you can find this row. e.g. 9:00 AM — Kickoff"
+      },
+      {
+        "id": "thu_items_item_type",
+        "name": "item_type",
+        "label": "Item Type",
+        "required": false,
+        "locked": false,
+        "display": "select",
+        "choices": [
+          [
+            "session",
+            "Full-width session"
+          ],
+          [
+            "section_label",
+            "Section label"
+          ],
+          [
+            "track_headers",
+            "Breakout track headers"
+          ],
+          [
+            "breakout_row",
+            "Breakout track row"
+          ]
+        ],
+        "type": "choice",
+        "default": "session",
+        "help_text": "Choose how this row renders on the agenda."
+      },
+      {
+        "id": "thu_items_section_label",
+        "name": "section_label",
+        "label": "Section Label",
+        "required": false,
+        "locked": false,
+        "type": "text",
+        "default": "",
+        "help_text": "Shown when Item Type is Section label.",
+        "visibility": {
+          "controlling_field": "thu_items_item_type",
+          "controlling_value_regex": "section_label",
+          "operator": "EQUAL"
+        }
+      },
+      {
+        "id": "thu_items_time_start",
+        "name": "time_start",
+        "label": "Start Time",
+        "required": false,
+        "locked": false,
+        "type": "text",
+        "default": ""
+      },
+      {
+        "id": "thu_items_time_end",
+        "name": "time_end",
+        "label": "End Time",
+        "required": false,
+        "locked": false,
+        "type": "text",
+        "default": ""
+      },
+      {
+        "id": "thu_items_session_style",
+        "name": "session_style",
+        "label": "Session Style",
+        "required": false,
+        "locked": false,
+        "display": "select",
+        "choices": [
+          [
+            "general",
+            "General / Plenary (blue)"
+          ],
+          [
+            "food",
+            "Food Service (green)"
+          ],
+          [
+            "health",
+            "Healthcare (purple)"
+          ],
+          [
+            "k12",
+            "K12 (orange)"
+          ],
+          [
+            "break-row",
+            "Break / Free Time (gray)"
+          ],
+          [
+            "social",
+            "Social / Closing (red)"
+          ],
+          [
+            "lunch",
+            "Meal (dark)"
+          ]
+        ],
+        "type": "choice",
+        "default": "general",
+        "visibility": {
+          "controlling_field": "thu_items_item_type",
+          "controlling_value_regex": "session",
+          "operator": "EQUAL"
+        }
+      },
+      {
+        "id": "thu_items_badge_text",
+        "name": "badge_text",
+        "label": "Badge Text",
+        "required": false,
+        "locked": false,
+        "type": "text",
+        "default": "",
+        "help_text": "e.g. Keynote, Panel, Meal, Break",
+        "visibility": {
+          "controlling_field": "thu_items_item_type",
+          "controlling_value_regex": "session",
+          "operator": "EQUAL"
+        }
+      },
+      {
+        "id": "thu_items_title",
+        "name": "title",
+        "label": "Session Title",
+        "required": false,
+        "locked": false,
+        "type": "text",
+        "default": "",
+        "visibility": {
+          "controlling_field": "thu_items_item_type",
+          "controlling_value_regex": "session",
+          "operator": "EQUAL"
+        }
+      },
+      {
+        "id": "thu_items_meta",
+        "name": "meta",
+        "label": "Session Meta",
+        "required": false,
+        "locked": false,
+        "type": "text",
+        "default": "",
+        "help_text": "Duration, speakers, or other details under the title.",
+        "visibility": {
+          "controlling_field": "thu_items_item_type",
+          "controlling_value_regex": "session",
+          "operator": "EQUAL"
+        }
+      },
+      {
+        "id": "thu_items_is_full_width_break",
+        "name": "is_full_width_break",
+        "label": "Full-width break (spans all tracks)",
+        "required": false,
+        "locked": false,
+        "type": "boolean",
+        "default": false,
+        "display": "checkbox",
+        "visibility": {
+          "controlling_field": "thu_items_item_type",
+          "controlling_value_regex": "breakout_row",
+          "operator": "EQUAL"
+        }
+      },
+      {
+        "id": "thu_items_break_label",
+        "name": "break_label",
+        "label": "Break Label",
+        "required": false,
+        "locked": false,
+        "type": "text",
+        "default": "Break — 15 min",
+        "visibility": {
+          "controlling_field": "thu_items_is_full_width_break",
+          "controlling_value_regex": "true",
+          "operator": "EQUAL"
+        }
+      },
+      {
+        "id": "thu_items_food_title",
+        "name": "food_title",
+        "label": "Food Service — Title",
+        "required": false,
+        "locked": false,
+        "type": "text",
+        "default": "",
+        "visibility": {
+          "controlling_field": "thu_items_item_type",
+          "controlling_value_regex": "breakout_row",
+          "operator": "EQUAL"
+        }
+      },
+      {
+        "id": "thu_items_food_meta",
+        "name": "food_meta",
+        "label": "Food Service — Meta",
+        "required": false,
+        "locked": false,
+        "type": "text",
+        "default": "",
+        "visibility": {
+          "controlling_field": "thu_items_item_type",
+          "controlling_value_regex": "breakout_row",
+          "operator": "EQUAL"
+        }
+      },
+      {
+        "id": "thu_items_food_empty",
+        "name": "food_empty",
+        "label": "Food Service — Empty / TBD",
+        "required": false,
+        "locked": false,
+        "type": "boolean",
+        "default": false,
+        "display": "checkbox",
+        "visibility": {
+          "controlling_field": "thu_items_item_type",
+          "controlling_value_regex": "breakout_row",
+          "operator": "EQUAL"
+        }
+      },
+      {
+        "id": "thu_items_health_title",
+        "name": "health_title",
+        "label": "Healthcare — Title",
+        "required": false,
+        "locked": false,
+        "type": "text",
+        "default": "",
+        "visibility": {
+          "controlling_field": "thu_items_item_type",
+          "controlling_value_regex": "breakout_row",
+          "operator": "EQUAL"
+        }
+      },
+      {
+        "id": "thu_items_health_meta",
+        "name": "health_meta",
+        "label": "Healthcare — Meta",
+        "required": false,
+        "locked": false,
+        "type": "text",
+        "default": "",
+        "visibility": {
+          "controlling_field": "thu_items_item_type",
+          "controlling_value_regex": "breakout_row",
+          "operator": "EQUAL"
+        }
+      },
+      {
+        "id": "thu_items_health_empty",
+        "name": "health_empty",
+        "label": "Healthcare — Empty / TBD",
+        "required": false,
+        "locked": false,
+        "type": "boolean",
+        "default": false,
+        "display": "checkbox",
+        "visibility": {
+          "controlling_field": "thu_items_item_type",
+          "controlling_value_regex": "breakout_row",
+          "operator": "EQUAL"
+        }
+      },
+      {
+        "id": "thu_items_k12_title",
+        "name": "k12_title",
+        "label": "K12 — Title",
+        "required": false,
+        "locked": false,
+        "type": "text",
+        "default": "",
+        "visibility": {
+          "controlling_field": "thu_items_item_type",
+          "controlling_value_regex": "breakout_row",
+          "operator": "EQUAL"
+        }
+      },
+      {
+        "id": "thu_items_k12_meta",
+        "name": "k12_meta",
+        "label": "K12 — Meta",
+        "required": false,
+        "locked": false,
+        "type": "text",
+        "default": "",
+        "visibility": {
+          "controlling_field": "thu_items_item_type",
+          "controlling_value_regex": "breakout_row",
+          "operator": "EQUAL"
+        }
+      },
+      {
+        "id": "thu_items_k12_empty",
+        "name": "k12_empty",
+        "label": "K12 — Empty / TBD",
+        "required": false,
+        "locked": false,
+        "type": "boolean",
+        "default": false,
+        "display": "checkbox",
+        "visibility": {
+          "controlling_field": "thu_items_item_type",
+          "controlling_value_regex": "breakout_row",
+          "operator": "EQUAL"
+        }
+      }
+    ]
+  },
+  {
+    "id": "fri_items",
+    "name": "fri_items",
+    "label": "Friday Schedule",
+    "required": false,
+    "locked": false,
+    "type": "group",
+    "occurrence": {
+      "min": 0,
+      "max": 80,
+      "default": 11,
+      "sorting_label_field": "list_label"
+    },
+    "help_text": "Sessions and breakouts for Friday.",
+    "default": [
+      {
+        "list_label": "7:45 AM — Breakfast",
+        "item_type": "session",
+        "section_label": "",
+        "time_start": "7:45 AM",
+        "time_end": "8:45 AM",
+        "session_style": "lunch",
+        "badge_text": "Meal",
+        "title": "Breakfast",
+        "meta": "1 hour",
+        "is_full_width_break": false,
+        "break_label": "",
+        "food_title": "",
+        "food_meta": "",
+        "food_empty": false,
+        "health_title": "",
+        "health_meta": "",
+        "health_empty": false,
+        "k12_title": "",
+        "k12_meta": "",
+        "k12_empty": false
+      },
+      {
+        "list_label": "Breakout Sessions — 8:45 AM to 11:00 AM",
+        "item_type": "section_label",
+        "section_label": "Breakout Sessions — 8:45 AM to 11:00 AM",
+        "time_start": "",
+        "time_end": "",
+        "session_style": "general",
+        "badge_text": "",
+        "title": "",
+        "meta": "",
+        "is_full_width_break": false,
+        "break_label": "",
+        "food_title": "",
+        "food_meta": "",
+        "food_empty": false,
+        "health_title": "",
+        "health_meta": "",
+        "health_empty": false,
+        "k12_title": "",
+        "k12_meta": "",
+        "k12_empty": false
+      },
+      {
+        "list_label": "Breakout track headers",
+        "item_type": "track_headers",
+        "section_label": "",
+        "time_start": "",
+        "time_end": "",
+        "session_style": "general",
+        "badge_text": "",
+        "title": "",
+        "meta": "",
+        "is_full_width_break": false,
+        "break_label": "",
+        "food_title": "",
+        "food_meta": "",
+        "food_empty": false,
+        "health_title": "",
+        "health_meta": "",
+        "health_empty": false,
+        "k12_title": "",
+        "k12_meta": "",
+        "k12_empty": false
+      },
+      {
+        "list_label": "8:45 AM — Breakouts",
+        "item_type": "breakout_row",
+        "section_label": "",
+        "time_start": "8:45 AM",
+        "time_end": "9:30 AM",
+        "session_style": "general",
+        "badge_text": "",
+        "title": "",
+        "meta": "",
+        "is_full_width_break": false,
+        "break_label": "",
+        "food_title": "From Inspection to Execution: Closing the Gap Between Standards and Reality",
+        "food_meta": "Johnny's / Assure",
+        "food_empty": false,
+        "health_title": "Retail Pharmacy Panel",
+        "health_meta": "Derrick Burns — McKesson",
+        "health_empty": false,
+        "k12_title": "Operational Excellence in School Nutrition",
+        "k12_meta": "Improving consistency, reducing waste & simplifying compliance",
+        "k12_empty": false
+      },
+      {
+        "list_label": "9:30 AM — Breakouts",
+        "item_type": "breakout_row",
+        "section_label": "",
+        "time_start": "9:30 AM",
+        "time_end": "10:15 AM",
+        "session_style": "general",
+        "badge_text": "",
+        "title": "",
+        "meta": "",
+        "is_full_width_break": false,
+        "break_label": "",
+        "food_title": "From the Aisle to the Boardroom: What Retail Leaders Are Prioritizing for 2027",
+        "food_meta": "Shane Segur — Busch's Fresh Food Market",
+        "food_empty": false,
+        "health_title": "Ed Marx",
+        "health_meta": "Pending confirmation",
+        "health_empty": false,
+        "k12_title": "Future Ready School Nutrition",
+        "k12_meta": "Preparing for tomorrow's technology, regulatory & staffing challenges",
+        "k12_empty": false
+      },
+      {
+        "list_label": "10:15 AM — Breakouts",
+        "item_type": "breakout_row",
+        "section_label": "",
+        "time_start": "10:15 AM",
+        "time_end": "11:00 AM",
+        "session_style": "general",
+        "badge_text": "",
+        "title": "",
+        "meta": "",
+        "is_full_width_break": false,
+        "break_label": "",
+        "food_title": "TBD",
+        "food_meta": "",
+        "food_empty": true,
+        "health_title": "TBD",
+        "health_meta": "",
+        "health_empty": true,
+        "k12_title": "TBD",
+        "k12_meta": "",
+        "k12_empty": true
+      },
+      {
+        "list_label": "11:00 AM — Lunch",
+        "item_type": "session",
+        "section_label": "",
+        "time_start": "11:00 AM",
+        "time_end": "11:30 AM",
+        "session_style": "lunch",
+        "badge_text": "Meal",
+        "title": "Lunch",
+        "meta": "30 min",
+        "is_full_width_break": false,
+        "break_label": "",
+        "food_title": "",
+        "food_meta": "",
+        "food_empty": false,
+        "health_title": "",
+        "health_meta": "",
+        "health_empty": false,
+        "k12_title": "",
+        "k12_meta": "",
+        "k12_empty": false
+      },
+      {
+        "list_label": "11:30 AM — Beyond Compliance: Using Data, AI & Cons",
+        "item_type": "session",
+        "section_label": "",
+        "time_start": "11:30 AM",
+        "time_end": "12:15 PM",
+        "session_style": "food",
+        "badge_text": "Panel",
+        "title": "Beyond Compliance: Using Data, AI & Consumer Intelligence to Prevent the Next Food Safety Crisis",
+        "meta": "Darin Detwiler + panelists — 45 min",
+        "is_full_width_break": false,
+        "break_label": "",
+        "food_title": "",
+        "food_meta": "",
+        "food_empty": false,
+        "health_title": "",
+        "health_meta": "",
+        "health_empty": false,
+        "k12_title": "",
+        "k12_meta": "",
+        "k12_empty": false
+      },
+      {
+        "list_label": "12:30 PM — From Innovation Theater to Operational I",
+        "item_type": "session",
+        "section_label": "",
+        "time_start": "12:30 PM",
+        "time_end": "1:15 PM",
+        "session_style": "general",
+        "badge_text": "Session",
+        "title": "From Innovation Theater to Operational Impact: What It Really Takes to Scale Technology in Convenience Retail",
+        "meta": "Drew — RaceTrac — 45 min",
+        "is_full_width_break": false,
+        "break_label": "",
+        "food_title": "",
+        "food_meta": "",
+        "food_empty": false,
+        "health_title": "",
+        "health_meta": "",
+        "health_empty": false,
+        "k12_title": "",
+        "k12_meta": "",
+        "k12_empty": false
+      },
+      {
+        "list_label": "12:30 PM — The AI Arms Race: Defending Healthcare i",
+        "item_type": "session",
+        "section_label": "",
+        "time_start": "12:30 PM",
+        "time_end": "1:15 PM",
+        "session_style": "health",
+        "badge_text": "Session",
+        "title": "The AI Arms Race: Defending Healthcare in an Era of Instant Expectations",
+        "meta": "Gus Quiroz — Essentia Health — 45 min",
+        "is_full_width_break": false,
+        "break_label": "",
+        "food_title": "",
+        "food_meta": "",
+        "food_empty": false,
+        "health_title": "",
+        "health_meta": "",
+        "health_empty": false,
+        "k12_title": "",
+        "k12_meta": "",
+        "k12_empty": false
+      },
+      {
+        "list_label": "1:15 PM — Closing with Daniel Harel",
+        "item_type": "session",
+        "section_label": "",
+        "time_start": "1:15 PM",
+        "time_end": "2:00 PM",
+        "session_style": "social",
+        "badge_text": "Closing",
+        "title": "Closing with Daniel Harel",
+        "meta": "45 min",
+        "is_full_width_break": false,
+        "break_label": "",
+        "food_title": "",
+        "food_meta": "",
+        "food_empty": false,
+        "health_title": "",
+        "health_meta": "",
+        "health_empty": false,
+        "k12_title": "",
+        "k12_meta": "",
+        "k12_empty": false
+      }
+    ],
+    "children": [
+      {
+        "id": "fri_items_list_label",
+        "name": "list_label",
+        "label": "List Label",
+        "required": false,
+        "locked": false,
+        "type": "text",
+        "default": "",
+        "help_text": "Shown in the sidebar list so you can find this row. e.g. 9:00 AM — Kickoff"
+      },
+      {
+        "id": "fri_items_item_type",
+        "name": "item_type",
+        "label": "Item Type",
+        "required": false,
+        "locked": false,
+        "display": "select",
+        "choices": [
+          [
+            "session",
+            "Full-width session"
+          ],
+          [
+            "section_label",
+            "Section label"
+          ],
+          [
+            "track_headers",
+            "Breakout track headers"
+          ],
+          [
+            "breakout_row",
+            "Breakout track row"
+          ]
+        ],
+        "type": "choice",
+        "default": "session",
+        "help_text": "Choose how this row renders on the agenda."
+      },
+      {
+        "id": "fri_items_section_label",
+        "name": "section_label",
+        "label": "Section Label",
+        "required": false,
+        "locked": false,
+        "type": "text",
+        "default": "",
+        "help_text": "Shown when Item Type is Section label.",
+        "visibility": {
+          "controlling_field": "fri_items_item_type",
+          "controlling_value_regex": "section_label",
+          "operator": "EQUAL"
+        }
+      },
+      {
+        "id": "fri_items_time_start",
+        "name": "time_start",
+        "label": "Start Time",
+        "required": false,
+        "locked": false,
+        "type": "text",
+        "default": ""
+      },
+      {
+        "id": "fri_items_time_end",
+        "name": "time_end",
+        "label": "End Time",
+        "required": false,
+        "locked": false,
+        "type": "text",
+        "default": ""
+      },
+      {
+        "id": "fri_items_session_style",
+        "name": "session_style",
+        "label": "Session Style",
+        "required": false,
+        "locked": false,
+        "display": "select",
+        "choices": [
+          [
+            "general",
+            "General / Plenary (blue)"
+          ],
+          [
+            "food",
+            "Food Service (green)"
+          ],
+          [
+            "health",
+            "Healthcare (purple)"
+          ],
+          [
+            "k12",
+            "K12 (orange)"
+          ],
+          [
+            "break-row",
+            "Break / Free Time (gray)"
+          ],
+          [
+            "social",
+            "Social / Closing (red)"
+          ],
+          [
+            "lunch",
+            "Meal (dark)"
+          ]
+        ],
+        "type": "choice",
+        "default": "general",
+        "visibility": {
+          "controlling_field": "fri_items_item_type",
+          "controlling_value_regex": "session",
+          "operator": "EQUAL"
+        }
+      },
+      {
+        "id": "fri_items_badge_text",
+        "name": "badge_text",
+        "label": "Badge Text",
+        "required": false,
+        "locked": false,
+        "type": "text",
+        "default": "",
+        "help_text": "e.g. Keynote, Panel, Meal, Break",
+        "visibility": {
+          "controlling_field": "fri_items_item_type",
+          "controlling_value_regex": "session",
+          "operator": "EQUAL"
+        }
+      },
+      {
+        "id": "fri_items_title",
+        "name": "title",
+        "label": "Session Title",
+        "required": false,
+        "locked": false,
+        "type": "text",
+        "default": "",
+        "visibility": {
+          "controlling_field": "fri_items_item_type",
+          "controlling_value_regex": "session",
+          "operator": "EQUAL"
+        }
+      },
+      {
+        "id": "fri_items_meta",
+        "name": "meta",
+        "label": "Session Meta",
+        "required": false,
+        "locked": false,
+        "type": "text",
+        "default": "",
+        "help_text": "Duration, speakers, or other details under the title.",
+        "visibility": {
+          "controlling_field": "fri_items_item_type",
+          "controlling_value_regex": "session",
+          "operator": "EQUAL"
+        }
+      },
+      {
+        "id": "fri_items_is_full_width_break",
+        "name": "is_full_width_break",
+        "label": "Full-width break (spans all tracks)",
+        "required": false,
+        "locked": false,
+        "type": "boolean",
+        "default": false,
+        "display": "checkbox",
+        "visibility": {
+          "controlling_field": "fri_items_item_type",
+          "controlling_value_regex": "breakout_row",
+          "operator": "EQUAL"
+        }
+      },
+      {
+        "id": "fri_items_break_label",
+        "name": "break_label",
+        "label": "Break Label",
+        "required": false,
+        "locked": false,
+        "type": "text",
+        "default": "Break — 15 min",
+        "visibility": {
+          "controlling_field": "fri_items_is_full_width_break",
+          "controlling_value_regex": "true",
+          "operator": "EQUAL"
+        }
+      },
+      {
+        "id": "fri_items_food_title",
+        "name": "food_title",
+        "label": "Food Service — Title",
+        "required": false,
+        "locked": false,
+        "type": "text",
+        "default": "",
+        "visibility": {
+          "controlling_field": "fri_items_item_type",
+          "controlling_value_regex": "breakout_row",
+          "operator": "EQUAL"
+        }
+      },
+      {
+        "id": "fri_items_food_meta",
+        "name": "food_meta",
+        "label": "Food Service — Meta",
+        "required": false,
+        "locked": false,
+        "type": "text",
+        "default": "",
+        "visibility": {
+          "controlling_field": "fri_items_item_type",
+          "controlling_value_regex": "breakout_row",
+          "operator": "EQUAL"
+        }
+      },
+      {
+        "id": "fri_items_food_empty",
+        "name": "food_empty",
+        "label": "Food Service — Empty / TBD",
+        "required": false,
+        "locked": false,
+        "type": "boolean",
+        "default": false,
+        "display": "checkbox",
+        "visibility": {
+          "controlling_field": "fri_items_item_type",
+          "controlling_value_regex": "breakout_row",
+          "operator": "EQUAL"
+        }
+      },
+      {
+        "id": "fri_items_health_title",
+        "name": "health_title",
+        "label": "Healthcare — Title",
+        "required": false,
+        "locked": false,
+        "type": "text",
+        "default": "",
+        "visibility": {
+          "controlling_field": "fri_items_item_type",
+          "controlling_value_regex": "breakout_row",
+          "operator": "EQUAL"
+        }
+      },
+      {
+        "id": "fri_items_health_meta",
+        "name": "health_meta",
+        "label": "Healthcare — Meta",
+        "required": false,
+        "locked": false,
+        "type": "text",
+        "default": "",
+        "visibility": {
+          "controlling_field": "fri_items_item_type",
+          "controlling_value_regex": "breakout_row",
+          "operator": "EQUAL"
+        }
+      },
+      {
+        "id": "fri_items_health_empty",
+        "name": "health_empty",
+        "label": "Healthcare — Empty / TBD",
+        "required": false,
+        "locked": false,
+        "type": "boolean",
+        "default": false,
+        "display": "checkbox",
+        "visibility": {
+          "controlling_field": "fri_items_item_type",
+          "controlling_value_regex": "breakout_row",
+          "operator": "EQUAL"
+        }
+      },
+      {
+        "id": "fri_items_k12_title",
+        "name": "k12_title",
+        "label": "K12 — Title",
+        "required": false,
+        "locked": false,
+        "type": "text",
+        "default": "",
+        "visibility": {
+          "controlling_field": "fri_items_item_type",
+          "controlling_value_regex": "breakout_row",
+          "operator": "EQUAL"
+        }
+      },
+      {
+        "id": "fri_items_k12_meta",
+        "name": "k12_meta",
+        "label": "K12 — Meta",
+        "required": false,
+        "locked": false,
+        "type": "text",
+        "default": "",
+        "visibility": {
+          "controlling_field": "fri_items_item_type",
+          "controlling_value_regex": "breakout_row",
+          "operator": "EQUAL"
+        }
+      },
+      {
+        "id": "fri_items_k12_empty",
+        "name": "k12_empty",
+        "label": "K12 — Empty / TBD",
+        "required": false,
+        "locked": false,
+        "type": "boolean",
+        "default": false,
+        "display": "checkbox",
+        "visibility": {
+          "controlling_field": "fri_items_item_type",
+          "controlling_value_regex": "breakout_row",
+          "operator": "EQUAL"
+        }
+      }
+    ]
+  }
+]

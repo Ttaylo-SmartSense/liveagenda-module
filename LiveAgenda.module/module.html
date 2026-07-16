@@ -1,0 +1,281 @@
+{# ════════════════════════════════════════════════
+   LiveAgenda Module — HTML Tab
+   CSS goes in the CSS tab | JS goes in the JS tab
+   Edit agenda days/sessions via the page editor —
+   no HTML editing required.
+════════════════════════════════════════════════ #}
+
+{% set default_day = module.default_day|default('wed') %}
+{% set hero_bg_type = module.hero_bg_type|default('color') %}
+{% set hero_bg_color = module.hero_bg_color.color|default('#04416c') %}
+{% set hero_overlay = module.hero_overlay_opacity|default(55) %}
+{% set cta_bg = module.cta_bg_color.color|default('#0081B9') %}
+
+{% set badge_class_map = {
+  'general': 'badge-plenary',
+  'food': 'badge-food',
+  'health': 'badge-health',
+  'k12': 'badge-k12',
+  'break-row': 'badge-break',
+  'social': 'badge-social',
+  'lunch': 'badge-lunch'
+} %}
+
+<div class="live26-agenda">
+
+  {# ── HERO ──────────────────────────────────── #}
+  <header class="la-hero{% if hero_bg_type == 'image' and module.hero_bg_image.src %} la-hero--image{% endif %}"
+    {% if hero_bg_type == 'image' and module.hero_bg_image.src %}
+      style="--la-hero-bg-image: url('{{ module.hero_bg_image.src }}'); --la-hero-overlay: {{ hero_overlay / 100 }};"
+    {% else %}
+      style="--la-hero-bg-color: {{ hero_bg_color }};"
+    {% endif %}
+  >
+    <div class="la-hero-inner">
+      {% if module.hero_eyebrow %}
+        <div class="la-hero-eyebrow">{{ module.hero_eyebrow }}</div>
+      {% endif %}
+      <h1>{{ module.hero_headline | replace("Agenda", "<span>Agenda</span>") }}</h1>
+      {% if module.hero_subtext %}<p>{{ module.hero_subtext }}</p>{% endif %}
+      <div class="la-hero-meta">
+        {% if module.hero_date %}<span><strong>{{ module.hero_date }}</strong></span>{% endif %}
+        {% if module.hero_date and module.hero_venue %}<span class="la-hero-meta-div"></span>{% endif %}
+        {% if module.hero_venue %}<span>{{ module.hero_venue }}</span>{% endif %}
+      </div>
+    </div>
+  </header>
+
+  {# ── DAY TABS ──────────────────────────────── #}
+  <div class="la-day-tabs" role="tablist" aria-label="Select day">
+    <button type="button" class="la-day-tab{% if default_day == 'all' %} active{% endif %}" data-day="all" role="tab" aria-selected="{{ 'true' if default_day == 'all' else 'false' }}">
+      {{ module.all_days_label|default('All Days') }}
+    </button>
+    {% for day in module.days %}
+      {% set key = day.day_key|default('day' ~ loop.index) %}
+      <button type="button" class="la-day-tab{% if default_day == key %} active{% endif %}" data-day="{{ key }}" role="tab" aria-selected="{{ 'true' if default_day == key else 'false' }}">
+        {{ day.tab_label }}
+      </button>
+    {% endfor %}
+  </div>
+
+  <main class="la-page-wrap">
+    {% for day in module.days %}
+      {% set key = day.day_key|default('day' ~ loop.index) %}
+      {% set is_active = default_day == 'all' or default_day == key %}
+      <div class="la-day-panel{% if is_active %} active{% endif %}{% if default_day == 'all' and not loop.first %} la-day-panel--stacked{% endif %}" data-day="{{ key }}">
+
+        <div class="la-day-header">
+          <div class="la-day-header-label">{{ day.header_label }}</div>
+          {% if day.header_sub %}
+            <span class="la-day-header-sub">{{ day.header_sub }}</span>
+          {% endif %}
+        </div>
+
+        {% set show_legend = day.legend_plenary or day.legend_food or day.legend_health or day.legend_k12 or day.legend_break or day.legend_social %}
+        {% if show_legend %}
+          <div class="la-track-legend">
+            {% if day.legend_plenary %}
+              <div class="la-track-legend-item"><div class="la-track-dot dot-plenary"></div>General Session</div>
+            {% endif %}
+            {% if day.legend_food %}
+              <div class="la-track-legend-item"><div class="la-track-dot dot-food"></div>Food Service</div>
+            {% endif %}
+            {% if day.legend_health %}
+              <div class="la-track-legend-item"><div class="la-track-dot dot-health"></div>Healthcare</div>
+            {% endif %}
+            {% if day.legend_k12 %}
+              <div class="la-track-legend-item"><div class="la-track-dot dot-k12"></div>K12</div>
+            {% endif %}
+            {% if day.legend_break %}
+              <div class="la-track-legend-item"><div class="la-track-dot dot-break"></div>Break / Meal</div>
+            {% endif %}
+            {% if day.legend_social %}
+              <div class="la-track-legend-item"><div class="la-track-dot dot-social"></div>Social</div>
+            {% endif %}
+          </div>
+        {% endif %}
+
+        <div class="la-day-body">
+          {% if key == 'wed' %}
+            {% for row in module.wed_items %}
+              {% set itype = row.item_type|default('session') %}
+              {% if itype == 'section_label' %}
+                <div class="la-section-spacer"><div class="la-section-label">{{ row.section_label }}</div></div>
+              {% elif itype == 'track_headers' %}
+                <div class="la-track-header-row">
+                  <div class="la-track-header-cell empty-hdr"></div>
+                  <div class="la-track-header-cell food-hdr">Food Service</div>
+                  <div class="la-track-header-cell health-hdr">Healthcare</div>
+                  <div class="la-track-header-cell k12-hdr">K12</div>
+                </div>
+              {% elif itype == 'breakout_row' %}
+                <div class="la-track-row">
+                  <div class="la-track-time{% if row.is_full_width_break %} la-track-time--break{% endif %}">
+                    {% if row.time_start %}<div class="la-time-start">{{ row.time_start }}</div>{% endif %}
+                    {% if row.time_end %}<div class="la-time-end">{{ row.time_end }}</div>{% endif %}
+                  </div>
+                  {% if row.is_full_width_break %}
+                    <div class="la-track-cell empty-cell la-track-cell--span3">
+                      <div class="la-track-cell-title la-track-cell-title--muted">{{ row.break_label|default('Break') }}</div>
+                    </div>
+                  {% else %}
+                    <div class="la-track-cell food-cell{% if row.food_empty %} empty-cell{% endif %}">
+                      {% if row.food_title %}<div class="la-track-cell-title{% if row.food_empty %} la-track-cell-title--muted{% endif %}">{{ row.food_title }}</div>{% endif %}
+                      {% if row.food_meta %}<div class="la-track-cell-meta">{{ row.food_meta }}</div>{% endif %}
+                    </div>
+                    <div class="la-track-cell health-cell{% if row.health_empty %} empty-cell{% endif %}">
+                      {% if row.health_title %}<div class="la-track-cell-title{% if row.health_empty %} la-track-cell-title--muted{% endif %}">{{ row.health_title }}</div>{% endif %}
+                      {% if row.health_meta %}<div class="la-track-cell-meta">{{ row.health_meta }}</div>{% endif %}
+                    </div>
+                    <div class="la-track-cell k12-cell{% if row.k12_empty %} empty-cell{% endif %}">
+                      {% if row.k12_title %}<div class="la-track-cell-title{% if row.k12_empty %} la-track-cell-title--muted{% endif %}">{{ row.k12_title }}</div>{% endif %}
+                      {% if row.k12_meta %}<div class="la-track-cell-meta">{{ row.k12_meta }}</div>{% endif %}
+                    </div>
+                  {% endif %}
+                </div>
+              {% else %}
+                {% set style = row.session_style|default('general') %}
+                {% set badge_class = badge_class_map[style]|default('badge-plenary') %}
+                <div class="la-schedule-row">
+                  <div class="la-schedule-time">
+                    {% if row.time_start %}<div class="la-time-start">{{ row.time_start }}</div>{% endif %}
+                    {% if row.time_end %}<div class="la-time-end">{{ row.time_end }}</div>{% endif %}
+                  </div>
+                  <div class="la-schedule-content {{ style }}">
+                    {% if row.badge_text %}<span class="la-session-badge {{ badge_class }}">{{ row.badge_text }}</span>{% endif %}
+                    {% if row.title %}<div class="la-session-title">{{ row.title }}</div>{% endif %}
+                    {% if row.meta %}<div class="la-session-meta">{{ row.meta }}</div>{% endif %}
+                  </div>
+                </div>
+              {% endif %}
+            {% endfor %}
+
+          {% elif key == 'thu' %}
+            {% for row in module.thu_items %}
+              {% set itype = row.item_type|default('session') %}
+              {% if itype == 'section_label' %}
+                <div class="la-section-spacer"><div class="la-section-label">{{ row.section_label }}</div></div>
+              {% elif itype == 'track_headers' %}
+                <div class="la-track-header-row">
+                  <div class="la-track-header-cell empty-hdr"></div>
+                  <div class="la-track-header-cell food-hdr">Food Service</div>
+                  <div class="la-track-header-cell health-hdr">Healthcare</div>
+                  <div class="la-track-header-cell k12-hdr">K12</div>
+                </div>
+              {% elif itype == 'breakout_row' %}
+                <div class="la-track-row">
+                  <div class="la-track-time{% if row.is_full_width_break %} la-track-time--break{% endif %}">
+                    {% if row.time_start %}<div class="la-time-start">{{ row.time_start }}</div>{% endif %}
+                    {% if row.time_end %}<div class="la-time-end">{{ row.time_end }}</div>{% endif %}
+                  </div>
+                  {% if row.is_full_width_break %}
+                    <div class="la-track-cell empty-cell la-track-cell--span3">
+                      <div class="la-track-cell-title la-track-cell-title--muted">{{ row.break_label|default('Break') }}</div>
+                    </div>
+                  {% else %}
+                    <div class="la-track-cell food-cell{% if row.food_empty %} empty-cell{% endif %}">
+                      {% if row.food_title %}<div class="la-track-cell-title{% if row.food_empty %} la-track-cell-title--muted{% endif %}">{{ row.food_title }}</div>{% endif %}
+                      {% if row.food_meta %}<div class="la-track-cell-meta">{{ row.food_meta }}</div>{% endif %}
+                    </div>
+                    <div class="la-track-cell health-cell{% if row.health_empty %} empty-cell{% endif %}">
+                      {% if row.health_title %}<div class="la-track-cell-title{% if row.health_empty %} la-track-cell-title--muted{% endif %}">{{ row.health_title }}</div>{% endif %}
+                      {% if row.health_meta %}<div class="la-track-cell-meta">{{ row.health_meta }}</div>{% endif %}
+                    </div>
+                    <div class="la-track-cell k12-cell{% if row.k12_empty %} empty-cell{% endif %}">
+                      {% if row.k12_title %}<div class="la-track-cell-title{% if row.k12_empty %} la-track-cell-title--muted{% endif %}">{{ row.k12_title }}</div>{% endif %}
+                      {% if row.k12_meta %}<div class="la-track-cell-meta">{{ row.k12_meta }}</div>{% endif %}
+                    </div>
+                  {% endif %}
+                </div>
+              {% else %}
+                {% set style = row.session_style|default('general') %}
+                {% set badge_class = badge_class_map[style]|default('badge-plenary') %}
+                <div class="la-schedule-row">
+                  <div class="la-schedule-time">
+                    {% if row.time_start %}<div class="la-time-start">{{ row.time_start }}</div>{% endif %}
+                    {% if row.time_end %}<div class="la-time-end">{{ row.time_end }}</div>{% endif %}
+                  </div>
+                  <div class="la-schedule-content {{ style }}">
+                    {% if row.badge_text %}<span class="la-session-badge {{ badge_class }}">{{ row.badge_text }}</span>{% endif %}
+                    {% if row.title %}<div class="la-session-title">{{ row.title }}</div>{% endif %}
+                    {% if row.meta %}<div class="la-session-meta">{{ row.meta }}</div>{% endif %}
+                  </div>
+                </div>
+              {% endif %}
+            {% endfor %}
+
+          {% elif key == 'fri' %}
+            {% for row in module.fri_items %}
+              {% set itype = row.item_type|default('session') %}
+              {% if itype == 'section_label' %}
+                <div class="la-section-spacer"><div class="la-section-label">{{ row.section_label }}</div></div>
+              {% elif itype == 'track_headers' %}
+                <div class="la-track-header-row">
+                  <div class="la-track-header-cell empty-hdr"></div>
+                  <div class="la-track-header-cell food-hdr">Food Service</div>
+                  <div class="la-track-header-cell health-hdr">Healthcare</div>
+                  <div class="la-track-header-cell k12-hdr">K12</div>
+                </div>
+              {% elif itype == 'breakout_row' %}
+                <div class="la-track-row">
+                  <div class="la-track-time{% if row.is_full_width_break %} la-track-time--break{% endif %}">
+                    {% if row.time_start %}<div class="la-time-start">{{ row.time_start }}</div>{% endif %}
+                    {% if row.time_end %}<div class="la-time-end">{{ row.time_end }}</div>{% endif %}
+                  </div>
+                  {% if row.is_full_width_break %}
+                    <div class="la-track-cell empty-cell la-track-cell--span3">
+                      <div class="la-track-cell-title la-track-cell-title--muted">{{ row.break_label|default('Break') }}</div>
+                    </div>
+                  {% else %}
+                    <div class="la-track-cell food-cell{% if row.food_empty %} empty-cell{% endif %}">
+                      {% if row.food_title %}<div class="la-track-cell-title{% if row.food_empty %} la-track-cell-title--muted{% endif %}">{{ row.food_title }}</div>{% endif %}
+                      {% if row.food_meta %}<div class="la-track-cell-meta">{{ row.food_meta }}</div>{% endif %}
+                    </div>
+                    <div class="la-track-cell health-cell{% if row.health_empty %} empty-cell{% endif %}">
+                      {% if row.health_title %}<div class="la-track-cell-title{% if row.health_empty %} la-track-cell-title--muted{% endif %}">{{ row.health_title }}</div>{% endif %}
+                      {% if row.health_meta %}<div class="la-track-cell-meta">{{ row.health_meta }}</div>{% endif %}
+                    </div>
+                    <div class="la-track-cell k12-cell{% if row.k12_empty %} empty-cell{% endif %}">
+                      {% if row.k12_title %}<div class="la-track-cell-title{% if row.k12_empty %} la-track-cell-title--muted{% endif %}">{{ row.k12_title }}</div>{% endif %}
+                      {% if row.k12_meta %}<div class="la-track-cell-meta">{{ row.k12_meta }}</div>{% endif %}
+                    </div>
+                  {% endif %}
+                </div>
+              {% else %}
+                {% set style = row.session_style|default('general') %}
+                {% set badge_class = badge_class_map[style]|default('badge-plenary') %}
+                <div class="la-schedule-row">
+                  <div class="la-schedule-time">
+                    {% if row.time_start %}<div class="la-time-start">{{ row.time_start }}</div>{% endif %}
+                    {% if row.time_end %}<div class="la-time-end">{{ row.time_end }}</div>{% endif %}
+                  </div>
+                  <div class="la-schedule-content {{ style }}">
+                    {% if row.badge_text %}<span class="la-session-badge {{ badge_class }}">{{ row.badge_text }}</span>{% endif %}
+                    {% if row.title %}<div class="la-session-title">{{ row.title }}</div>{% endif %}
+                    {% if row.meta %}<div class="la-session-meta">{{ row.meta }}</div>{% endif %}
+                  </div>
+                </div>
+              {% endif %}
+            {% endfor %}
+          {% endif %}
+        </div>
+
+      </div>
+    {% endfor %}
+  </main>
+
+  {# ── CTA BAND ──────────────────────────────── #}
+  <section class="la-cta-band" style="--la-cta-bg: {{ cta_bg }};">
+    <div class="la-cta-band-inner">
+      {% if module.cta_headline %}<h2>{{ module.cta_headline }}</h2>{% endif %}
+      {% if module.cta_subtext %}<p>{{ module.cta_subtext }}</p>{% endif %}
+      {% if module.cta_text and module.cta_url.href %}
+        <a href="{{ module.cta_url.href }}" class="la-cta-btn"{% if module.cta_url.type == 'EXTERNAL' %} target="_blank" rel="noopener"{% endif %}>{{ module.cta_text }}</a>
+      {% endif %}
+      {% if module.cta_secondary_text and module.cta_secondary_url.href %}
+        <a href="{{ module.cta_secondary_url.href }}" class="la-cta-btn-ghost"{% if module.cta_secondary_url.type == 'EXTERNAL' %} target="_blank" rel="noopener"{% endif %}>{{ module.cta_secondary_text }}</a>
+      {% endif %}
+    </div>
+  </section>
+
+</div>
