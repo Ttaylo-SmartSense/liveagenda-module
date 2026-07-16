@@ -80,11 +80,11 @@
             {% if day.legend_food %}
               <div class="la-track-legend-item"><div class="la-track-dot dot-food"></div>Food Service</div>
             {% endif %}
-            {% if day.legend_health %}
-              <div class="la-track-legend-item"><div class="la-track-dot dot-health"></div>Healthcare</div>
-            {% endif %}
             {% if day.legend_k12 %}
               <div class="la-track-legend-item"><div class="la-track-dot dot-k12"></div>K12</div>
+            {% endif %}
+            {% if day.legend_health %}
+              <div class="la-track-legend-item"><div class="la-track-dot dot-health"></div>Healthcare</div>
             {% endif %}
             {% if day.legend_break %}
               <div class="la-track-legend-item"><div class="la-track-dot dot-break"></div>Break / Meal</div>
@@ -105,11 +105,13 @@
                 <div class="la-track-header-row">
                   <div class="la-track-header-cell empty-hdr"></div>
                   <div class="la-track-header-cell food-hdr">Food Service</div>
-                  <div class="la-track-header-cell health-hdr">Healthcare</div>
                   <div class="la-track-header-cell k12-hdr">K12</div>
+                  <div class="la-track-header-cell health-hdr">Healthcare</div>
                 </div>
               {% elif itype == 'breakout_row' %}
-                <div class="la-track-row">
+                {% set k12_label = row.k12_title|default('')|trim|lower %}
+                {% set merge_food_k12 = not row.is_full_width_break and (row.k12_empty or k12_label == '' or k12_label == 'open time' or k12_label == 'tbd' or k12_label == 'open') %}
+                <div class="la-track-row{% if merge_food_k12 %} la-track-row--merged-fk{% endif %}">
                   <div class="la-track-time{% if row.is_full_width_break %} la-track-time--break{% endif %}">
                     {% if row.time_start %}<div class="la-time-start">{{ row.time_start }}</div>{% endif %}
                     {% if row.time_end %}<div class="la-time-end">{{ row.time_end }}</div>{% endif %}
@@ -119,17 +121,24 @@
                       <div class="la-track-cell-title la-track-cell-title--muted">{{ row.break_label|default('Break') }}</div>
                     </div>
                   {% else %}
-                    <div class="la-track-cell food-cell{% if row.food_empty %} empty-cell{% endif %}">
-                      {% if row.food_title %}<div class="la-track-cell-title{% if row.food_empty %} la-track-cell-title--muted{% endif %}">{{ row.food_title }}</div>{% endif %}
-                      {% if row.food_meta %}<div class="la-track-cell-meta">{{ row.food_meta }}</div>{% endif %}
-                    </div>
+                    {% if merge_food_k12 %}
+                      <div class="la-track-cell food-cell la-track-cell--merged-fk{% if row.food_empty %} empty-cell{% endif %}">
+                        {% if row.food_title %}<div class="la-track-cell-title{% if row.food_empty %} la-track-cell-title--muted{% endif %}">{{ row.food_title }}</div>{% endif %}
+                        {% if row.food_meta %}<div class="la-track-cell-meta">{{ row.food_meta }}</div>{% endif %}
+                      </div>
+                    {% else %}
+                      <div class="la-track-cell food-cell{% if row.food_empty %} empty-cell{% endif %}">
+                        {% if row.food_title %}<div class="la-track-cell-title{% if row.food_empty %} la-track-cell-title--muted{% endif %}">{{ row.food_title }}</div>{% endif %}
+                        {% if row.food_meta %}<div class="la-track-cell-meta">{{ row.food_meta }}</div>{% endif %}
+                      </div>
+                      <div class="la-track-cell k12-cell{% if row.k12_empty %} empty-cell{% endif %}">
+                        {% if row.k12_title %}<div class="la-track-cell-title{% if row.k12_empty %} la-track-cell-title--muted{% endif %}">{{ row.k12_title }}</div>{% endif %}
+                        {% if row.k12_meta %}<div class="la-track-cell-meta">{{ row.k12_meta }}</div>{% endif %}
+                      </div>
+                    {% endif %}
                     <div class="la-track-cell health-cell{% if row.health_empty %} empty-cell{% endif %}">
                       {% if row.health_title %}<div class="la-track-cell-title{% if row.health_empty %} la-track-cell-title--muted{% endif %}">{{ row.health_title }}</div>{% endif %}
                       {% if row.health_meta %}<div class="la-track-cell-meta">{{ row.health_meta }}</div>{% endif %}
-                    </div>
-                    <div class="la-track-cell k12-cell{% if row.k12_empty %} empty-cell{% endif %}">
-                      {% if row.k12_title %}<div class="la-track-cell-title{% if row.k12_empty %} la-track-cell-title--muted{% endif %}">{{ row.k12_title }}</div>{% endif %}
-                      {% if row.k12_meta %}<div class="la-track-cell-meta">{{ row.k12_meta }}</div>{% endif %}
                     </div>
                   {% endif %}
                 </div>
@@ -159,11 +168,13 @@
                 <div class="la-track-header-row">
                   <div class="la-track-header-cell empty-hdr"></div>
                   <div class="la-track-header-cell food-hdr">Food Service</div>
-                  <div class="la-track-header-cell health-hdr">Healthcare</div>
                   <div class="la-track-header-cell k12-hdr">K12</div>
+                  <div class="la-track-header-cell health-hdr">Healthcare</div>
                 </div>
               {% elif itype == 'breakout_row' %}
-                <div class="la-track-row">
+                {% set k12_label = row.k12_title|default('')|trim|lower %}
+                {% set merge_food_k12 = not row.is_full_width_break and (row.k12_empty or k12_label == '' or k12_label == 'open time' or k12_label == 'tbd' or k12_label == 'open') %}
+                <div class="la-track-row{% if merge_food_k12 %} la-track-row--merged-fk{% endif %}">
                   <div class="la-track-time{% if row.is_full_width_break %} la-track-time--break{% endif %}">
                     {% if row.time_start %}<div class="la-time-start">{{ row.time_start }}</div>{% endif %}
                     {% if row.time_end %}<div class="la-time-end">{{ row.time_end }}</div>{% endif %}
@@ -173,17 +184,24 @@
                       <div class="la-track-cell-title la-track-cell-title--muted">{{ row.break_label|default('Break') }}</div>
                     </div>
                   {% else %}
-                    <div class="la-track-cell food-cell{% if row.food_empty %} empty-cell{% endif %}">
-                      {% if row.food_title %}<div class="la-track-cell-title{% if row.food_empty %} la-track-cell-title--muted{% endif %}">{{ row.food_title }}</div>{% endif %}
-                      {% if row.food_meta %}<div class="la-track-cell-meta">{{ row.food_meta }}</div>{% endif %}
-                    </div>
+                    {% if merge_food_k12 %}
+                      <div class="la-track-cell food-cell la-track-cell--merged-fk{% if row.food_empty %} empty-cell{% endif %}">
+                        {% if row.food_title %}<div class="la-track-cell-title{% if row.food_empty %} la-track-cell-title--muted{% endif %}">{{ row.food_title }}</div>{% endif %}
+                        {% if row.food_meta %}<div class="la-track-cell-meta">{{ row.food_meta }}</div>{% endif %}
+                      </div>
+                    {% else %}
+                      <div class="la-track-cell food-cell{% if row.food_empty %} empty-cell{% endif %}">
+                        {% if row.food_title %}<div class="la-track-cell-title{% if row.food_empty %} la-track-cell-title--muted{% endif %}">{{ row.food_title }}</div>{% endif %}
+                        {% if row.food_meta %}<div class="la-track-cell-meta">{{ row.food_meta }}</div>{% endif %}
+                      </div>
+                      <div class="la-track-cell k12-cell{% if row.k12_empty %} empty-cell{% endif %}">
+                        {% if row.k12_title %}<div class="la-track-cell-title{% if row.k12_empty %} la-track-cell-title--muted{% endif %}">{{ row.k12_title }}</div>{% endif %}
+                        {% if row.k12_meta %}<div class="la-track-cell-meta">{{ row.k12_meta }}</div>{% endif %}
+                      </div>
+                    {% endif %}
                     <div class="la-track-cell health-cell{% if row.health_empty %} empty-cell{% endif %}">
                       {% if row.health_title %}<div class="la-track-cell-title{% if row.health_empty %} la-track-cell-title--muted{% endif %}">{{ row.health_title }}</div>{% endif %}
                       {% if row.health_meta %}<div class="la-track-cell-meta">{{ row.health_meta }}</div>{% endif %}
-                    </div>
-                    <div class="la-track-cell k12-cell{% if row.k12_empty %} empty-cell{% endif %}">
-                      {% if row.k12_title %}<div class="la-track-cell-title{% if row.k12_empty %} la-track-cell-title--muted{% endif %}">{{ row.k12_title }}</div>{% endif %}
-                      {% if row.k12_meta %}<div class="la-track-cell-meta">{{ row.k12_meta }}</div>{% endif %}
                     </div>
                   {% endif %}
                 </div>
@@ -213,11 +231,13 @@
                 <div class="la-track-header-row">
                   <div class="la-track-header-cell empty-hdr"></div>
                   <div class="la-track-header-cell food-hdr">Food Service</div>
-                  <div class="la-track-header-cell health-hdr">Healthcare</div>
                   <div class="la-track-header-cell k12-hdr">K12</div>
+                  <div class="la-track-header-cell health-hdr">Healthcare</div>
                 </div>
               {% elif itype == 'breakout_row' %}
-                <div class="la-track-row">
+                {% set k12_label = row.k12_title|default('')|trim|lower %}
+                {% set merge_food_k12 = not row.is_full_width_break and (row.k12_empty or k12_label == '' or k12_label == 'open time' or k12_label == 'tbd' or k12_label == 'open') %}
+                <div class="la-track-row{% if merge_food_k12 %} la-track-row--merged-fk{% endif %}">
                   <div class="la-track-time{% if row.is_full_width_break %} la-track-time--break{% endif %}">
                     {% if row.time_start %}<div class="la-time-start">{{ row.time_start }}</div>{% endif %}
                     {% if row.time_end %}<div class="la-time-end">{{ row.time_end }}</div>{% endif %}
@@ -227,17 +247,24 @@
                       <div class="la-track-cell-title la-track-cell-title--muted">{{ row.break_label|default('Break') }}</div>
                     </div>
                   {% else %}
-                    <div class="la-track-cell food-cell{% if row.food_empty %} empty-cell{% endif %}">
-                      {% if row.food_title %}<div class="la-track-cell-title{% if row.food_empty %} la-track-cell-title--muted{% endif %}">{{ row.food_title }}</div>{% endif %}
-                      {% if row.food_meta %}<div class="la-track-cell-meta">{{ row.food_meta }}</div>{% endif %}
-                    </div>
+                    {% if merge_food_k12 %}
+                      <div class="la-track-cell food-cell la-track-cell--merged-fk{% if row.food_empty %} empty-cell{% endif %}">
+                        {% if row.food_title %}<div class="la-track-cell-title{% if row.food_empty %} la-track-cell-title--muted{% endif %}">{{ row.food_title }}</div>{% endif %}
+                        {% if row.food_meta %}<div class="la-track-cell-meta">{{ row.food_meta }}</div>{% endif %}
+                      </div>
+                    {% else %}
+                      <div class="la-track-cell food-cell{% if row.food_empty %} empty-cell{% endif %}">
+                        {% if row.food_title %}<div class="la-track-cell-title{% if row.food_empty %} la-track-cell-title--muted{% endif %}">{{ row.food_title }}</div>{% endif %}
+                        {% if row.food_meta %}<div class="la-track-cell-meta">{{ row.food_meta }}</div>{% endif %}
+                      </div>
+                      <div class="la-track-cell k12-cell{% if row.k12_empty %} empty-cell{% endif %}">
+                        {% if row.k12_title %}<div class="la-track-cell-title{% if row.k12_empty %} la-track-cell-title--muted{% endif %}">{{ row.k12_title }}</div>{% endif %}
+                        {% if row.k12_meta %}<div class="la-track-cell-meta">{{ row.k12_meta }}</div>{% endif %}
+                      </div>
+                    {% endif %}
                     <div class="la-track-cell health-cell{% if row.health_empty %} empty-cell{% endif %}">
                       {% if row.health_title %}<div class="la-track-cell-title{% if row.health_empty %} la-track-cell-title--muted{% endif %}">{{ row.health_title }}</div>{% endif %}
                       {% if row.health_meta %}<div class="la-track-cell-meta">{{ row.health_meta }}</div>{% endif %}
-                    </div>
-                    <div class="la-track-cell k12-cell{% if row.k12_empty %} empty-cell{% endif %}">
-                      {% if row.k12_title %}<div class="la-track-cell-title{% if row.k12_empty %} la-track-cell-title--muted{% endif %}">{{ row.k12_title }}</div>{% endif %}
-                      {% if row.k12_meta %}<div class="la-track-cell-meta">{{ row.k12_meta }}</div>{% endif %}
                     </div>
                   {% endif %}
                 </div>
