@@ -17,9 +17,13 @@
   --blue:             #0081B9;
   --blue-dark:        #006694;
   --blue-light:       #ddf0f8;
-  --gray-light:       #F2F3F3;
+  --plenary:          #0d5e94;
+  --plenary-dark:     #0a4a75;
+  --plenary-light:    #e7f1f8;
+  --gray-light:       #F6F7F8;
   --gray-mid:         #E5E7E8;
   --gray-dark:        #4B4F53;
+  --break-accent:     #C9CDD1;
   --gray-company:     #5c6063;
   --black:            #4B4F53;
   --white:            #ffffff;
@@ -32,9 +36,9 @@
   --track-health:     #Bfa3c9;
   --track-health-light: #f5eff8;
   --track-health-text:  #5c3d6e;
-  --social:           #947AB2;
-  --social-light:     #f0ebf5;
-  --social-text:      #4a3566;
+  --social:           #5C3D6E;
+  --social-light:     #efe8f4;
+  --social-text:      #452c57;
   --font-display: 'Barlow', sans-serif;
   --font-body:    'Inter', sans-serif;
   font-family: var(--font-body);
@@ -43,10 +47,16 @@
   color: var(--black);
   background: var(--white);
   -webkit-font-smoothing: antialiased;
-  overflow-x: clip;
-  overflow-y: visible;
+  overflow: visible;
   width: 100%;
-  max-width: 100%;
+  max-width: none;
+}
+
+/* Portals used when hero/CTA are moved out of the HubSpot column on mobile */
+.live26-agenda.live26-agenda--portal {
+  width: 100%;
+  max-width: none;
+  background: transparent;
 }
 
 /* ── HERO ─────────────────────────────────────── */
@@ -232,11 +242,11 @@
   color: var(--gray-dark);
 }
 .live26-agenda .la-track-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
-.live26-agenda .dot-plenary  { background: var(--blue); }
+.live26-agenda .dot-plenary  { background: var(--plenary); }
 .live26-agenda .dot-food     { background: var(--track-food); }
 .live26-agenda .dot-health   { background: var(--track-health); }
 .live26-agenda .dot-k12      { background: var(--track-k12); }
-.live26-agenda .dot-break    { background: var(--gray-dark); }
+.live26-agenda .dot-break    { background: var(--break-accent); }
 .live26-agenda .dot-social   { background: var(--social); }
 
 /* ── SCHEDULE ROWS ─────────────────────────────── */
@@ -262,7 +272,7 @@
 
 .live26-agenda .la-schedule-content {
   border: 1px solid var(--gray-mid);
-  border-left: 4px solid var(--blue);
+  border-left: 4px solid var(--plenary);
   padding: 12px 16px;
   background: #fff;
   border-radius: 0 8px 8px 0;
@@ -273,9 +283,12 @@
 .live26-agenda .la-schedule-content.food      { border-left-color: var(--track-food); }
 .live26-agenda .la-schedule-content.health    { border-left-color: var(--track-health); }
 .live26-agenda .la-schedule-content.k12       { border-left-color: var(--track-k12); }
-.live26-agenda .la-schedule-content.break-row { border-left-color: var(--gray-dark); background: #fafafa; }
+.live26-agenda .la-schedule-content.break-row,
+.live26-agenda .la-schedule-content.lunch {
+  border-left-color: var(--break-accent);
+  background: var(--gray-light);
+}
 .live26-agenda .la-schedule-content.social    { border-left-color: var(--social); }
-.live26-agenda .la-schedule-content.lunch     { border-left-color: var(--gray-dark); background: #fafafa; }
 
 .live26-agenda .la-session-title {
   font-size: 14px;
@@ -296,7 +309,7 @@
   margin-bottom: 5px;
   width: fit-content;
 }
-.live26-agenda .badge-plenary { background: var(--blue-light);  color: var(--blue-dark); }
+.live26-agenda .badge-plenary { background: var(--plenary-light);  color: var(--plenary-dark); }
 .live26-agenda .badge-food    { background: var(--track-food-light); color: var(--track-food-text); }
 .live26-agenda .badge-health  { background: var(--track-health-light); color: var(--track-health-text); }
 .live26-agenda .badge-k12     { background: var(--track-k12-light); color: var(--track-k12-text); }
@@ -436,6 +449,7 @@
   font-family: var(--font-display);
   font-size: clamp(1.8rem, 4vw, 2.6rem);
   font-weight: 800;
+  line-height: 1.2;
   color: #fff;
   margin-bottom: 10px;
 }
@@ -444,6 +458,13 @@
   color: #d4edf7;
   max-width: 420px;
   margin: 0 auto 30px;
+}
+.live26-agenda .la-cta-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
 }
 .live26-agenda .la-cta-btn {
   display: inline-block;
@@ -469,7 +490,6 @@
   font-weight: 500;
   text-decoration: none;
   padding: 13px 24px;
-  margin-left: 10px;
   border-radius: 6px;
   border: 1px solid rgba(255,255,255,0.4);
   transition: border-color 0.2s, color 0.2s;
@@ -604,7 +624,17 @@
     border-radius: 0 0 8px 8px;
   }
 
-  .live26-agenda .la-hero { padding: 52px 1.25rem 44px; }
+  /* When portaled out of the HubSpot column, bands are already full-width */
+  .live26-agenda.live26-agenda--portal .la-hero,
+  .live26-agenda.live26-agenda--portal .la-cta-band {
+    width: 100%;
+    max-width: none;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .live26-agenda .la-hero {
+    padding: 52px 1.25rem 44px;
+  }
   .live26-agenda .la-hero-meta {
     flex-wrap: wrap;
     justify-content: center;
@@ -627,10 +657,20 @@
     margin-bottom: 24px;
   }
   .live26-agenda .la-day-header-label { font-size: 1.35rem; }
-  .live26-agenda .la-cta-band { padding: 48px 1.25rem; }
+  .live26-agenda .la-cta-band {
+    padding: 48px 1.25rem;
+  }
+  .live26-agenda .la-cta-actions {
+    flex-direction: column;
+    align-items: stretch;
+    max-width: 280px;
+    margin: 0 auto;
+  }
+  .live26-agenda .la-cta-btn,
   .live26-agenda .la-cta-btn-ghost {
-    display: inline-block;
-    margin-left: 0;
-    margin-top: 10px;
+    display: block;
+    width: 100%;
+    text-align: center;
+    box-sizing: border-box;
   }
 }

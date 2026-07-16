@@ -296,11 +296,15 @@
     <div class="la-cta-band-inner">
       {% if module.cta_headline %}<h2>{{ module.cta_headline }}</h2>{% endif %}
       {% if module.cta_subtext %}<p>{{ module.cta_subtext }}</p>{% endif %}
-      {% if module.cta_text and module.cta_url.href %}
-        <a href="{{ module.cta_url.href }}" class="la-cta-btn"{% if module.cta_url.type == 'EXTERNAL' %} target="_blank" rel="noopener"{% endif %}>{{ module.cta_text }}</a>
-      {% endif %}
-      {% if module.cta_secondary_text and module.cta_secondary_url.href %}
-        <a href="{{ module.cta_secondary_url.href }}" class="la-cta-btn-ghost"{% if module.cta_secondary_url.type == 'EXTERNAL' %} target="_blank" rel="noopener"{% endif %}>{{ module.cta_secondary_text }}</a>
+      {% if (module.cta_text and module.cta_url.href) or (module.cta_secondary_text and module.cta_secondary_url.href) %}
+        <div class="la-cta-actions">
+          {% if module.cta_text and module.cta_url.href %}
+            <a href="{{ module.cta_url.href }}" class="la-cta-btn"{% if module.cta_url.type == 'EXTERNAL' %} target="_blank" rel="noopener"{% endif %}>{{ module.cta_text }}</a>
+          {% endif %}
+          {% if module.cta_secondary_text and module.cta_secondary_url.href %}
+            <a href="{{ module.cta_secondary_url.href }}" class="la-cta-btn-ghost"{% if module.cta_secondary_url.type == 'EXTERNAL' %} target="_blank" rel="noopener"{% endif %}>{{ module.cta_secondary_text }}</a>
+          {% endif %}
+        </div>
       {% endif %}
     </div>
   </section>
