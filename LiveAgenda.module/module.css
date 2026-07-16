@@ -43,9 +43,10 @@
   color: var(--black);
   background: var(--white);
   -webkit-font-smoothing: antialiased;
-  overflow: visible;
+  overflow-x: clip;
+  overflow-y: visible;
   width: 100%;
-  max-width: none;
+  max-width: 100%;
 }
 
 /* ── HERO ─────────────────────────────────────── */
@@ -476,26 +477,160 @@
 .live26-agenda .la-cta-btn-ghost:hover { border-color: rgba(255,255,255,0.8); color: #fff; }
 
 /* ── RESPONSIVE ────────────────────────────────── */
+.live26-agenda .la-session-title,
+.live26-agenda .la-track-cell-title,
+.live26-agenda .la-session-meta,
+.live26-agenda .la-track-cell-meta {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
 @media (max-width: 900px) {
   .live26-agenda .la-track-row,
-  .live26-agenda .la-track-header-row { grid-template-columns: 90px 1fr 1fr; }
-  .live26-agenda .la-track-row--merged-fk { grid-template-columns: 90px 1fr; }
-  .live26-agenda .la-track-cell.health-cell,
-  .live26-agenda .la-track-header-cell.health-hdr { display: none; }
-  .live26-agenda .la-schedule-row { grid-template-columns: 90px 1fr; }
+  .live26-agenda .la-track-header-row {
+    grid-template-columns: 80px minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
+    gap: 5px;
+  }
+  .live26-agenda .la-track-row--merged-fk {
+    grid-template-columns: 80px minmax(0, 2fr) minmax(0, 1fr);
+  }
+  .live26-agenda .la-schedule-row { grid-template-columns: 80px minmax(0, 1fr); }
   .live26-agenda .la-track-time,
-  .live26-agenda .la-schedule-time { padding: 10px; }
-  .live26-agenda .la-track-cell--span3 { grid-column: span 2; }
+  .live26-agenda .la-schedule-time { padding: 10px 8px; }
+  .live26-agenda .la-track-cell,
+  .live26-agenda .la-schedule-content { padding: 10px 12px; }
+  .live26-agenda .la-track-cell-title { font-size: 12px; }
+  .live26-agenda .la-track-header-cell { padding: 8px 6px; font-size: 10px; letter-spacing: 0.06em; }
+  .live26-agenda .la-track-cell--span3 { grid-column: span 3; }
 }
-@media (max-width: 600px) {
+
+/* Stack breakout tracks so Food / K12 / Healthcare all remain visible */
+@media (max-width: 700px) {
+  .live26-agenda .la-track-header-row { display: none; }
+
   .live26-agenda .la-track-row,
-  .live26-agenda .la-track-header-row { grid-template-columns: 70px 1fr; }
-  .live26-agenda .la-track-row--merged-fk { grid-template-columns: 70px 1fr; }
-  .live26-agenda .la-track-cell.k12-cell,
-  .live26-agenda .la-track-header-cell.k12-hdr { display: none; }
-  .live26-agenda .la-track-cell--span3 { grid-column: span 1; }
+  .live26-agenda .la-track-row--merged-fk {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .live26-agenda .la-track-time {
+    flex-direction: row;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding: 10px 14px;
+  }
+  .live26-agenda .la-track-time .la-time-end::before {
+    content: '– ';
+  }
+
+  .live26-agenda .la-track-cell {
+    min-height: 0;
+    width: 100%;
+  }
+  .live26-agenda .la-track-cell--span3 {
+    grid-column: auto;
+  }
+
+  /* Inline track labels replace the desktop header row */
+  .live26-agenda .la-track-cell.food-cell:not(.la-track-cell--span3)::before,
+  .live26-agenda .la-track-cell.k12-cell:not(.la-track-cell--span3)::before,
+  .live26-agenda .la-track-cell.health-cell:not(.la-track-cell--span3)::before {
+    display: block;
+    position: static;
+    height: auto;
+    width: auto;
+    left: auto;
+    right: auto;
+    top: auto;
+    background: none;
+    pointer-events: auto;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    line-height: 1.3;
+    margin-bottom: 6px;
+  }
+
+  /* Merged Food+K12: move gradient bar off ::before so the label matches other cells */
+  .live26-agenda .la-track-cell.food-cell.la-track-cell--merged-fk {
+    overflow: visible;
+    border-top: none;
+    padding: 10px 12px;
+    background-image: linear-gradient(to right, var(--track-food), var(--track-k12));
+    background-size: 100% 3px;
+    background-repeat: no-repeat;
+    background-position: top left;
+  }
+  .live26-agenda .la-track-cell.food-cell.la-track-cell--merged-fk.empty-cell {
+    background-color: var(--gray-light);
+  }
+
+  .live26-agenda .la-track-cell.food-cell:not(.la-track-cell--merged-fk):not(.la-track-cell--span3)::before {
+    content: 'Food Service';
+    color: var(--track-food-text);
+  }
+  .live26-agenda .la-track-cell.food-cell.la-track-cell--merged-fk::before {
+    content: 'Food Service & K12';
+    color: var(--track-food-text);
+  }
+  .live26-agenda .la-track-cell.k12-cell:not(.la-track-cell--span3)::before {
+    content: 'K12';
+    color: var(--track-k12-text);
+  }
+  .live26-agenda .la-track-cell.health-cell:not(.la-track-cell--span3)::before {
+    content: 'Healthcare';
+    color: var(--track-health-text);
+  }
+
+  .live26-agenda .la-schedule-row {
+    grid-template-columns: 1fr;
+  }
+  .live26-agenda .la-schedule-time {
+    flex-direction: row;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 6px;
+    border-right: 1px solid var(--gray-mid);
+    border-radius: 8px 8px 0 0;
+  }
+  .live26-agenda .la-schedule-time .la-time-end::before {
+    content: '– ';
+  }
+  .live26-agenda .la-schedule-content {
+    border-radius: 0 0 8px 8px;
+  }
+
   .live26-agenda .la-hero { padding: 52px 1.25rem 44px; }
+  .live26-agenda .la-hero-meta {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px 16px;
+    padding: 10px 16px;
+  }
+  .live26-agenda .la-hero-meta-div { display: none; }
   .live26-agenda .la-page-wrap { padding: 32px 1.25rem 60px; }
-  .live26-agenda .la-day-tabs { padding: 0 1rem; }
-  .live26-agenda .la-cta-btn-ghost { margin-left: 0; margin-top: 10px; }
+  .live26-agenda .la-day-tabs {
+    padding: 0 0.5rem;
+    gap: 0;
+  }
+  .live26-agenda .la-day-tab {
+    padding: 14px 12px 11px;
+    font-size: 13px;
+  }
+  .live26-agenda .la-day-header {
+    flex-wrap: wrap;
+    gap: 8px 12px;
+    margin-bottom: 24px;
+  }
+  .live26-agenda .la-day-header-label { font-size: 1.35rem; }
+  .live26-agenda .la-cta-band { padding: 48px 1.25rem; }
+  .live26-agenda .la-cta-btn-ghost {
+    display: inline-block;
+    margin-left: 0;
+    margin-top: 10px;
+  }
 }
