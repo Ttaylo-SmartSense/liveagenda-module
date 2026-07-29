@@ -136,7 +136,54 @@
   font-size: 17px;
   color: #d4edf7;
   max-width: 500px;
+  margin: 0 auto 24px;
+}
+.live26-agenda .la-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
   margin: 0 auto 32px;
+}
+.live26-agenda .la-hero-btn {
+  display: inline-block;
+  background: var(--green);
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 13px 34px;
+  border-radius: 6px;
+  border: 1px solid var(--green);
+  transition: background 0.2s, transform 0.15s;
+}
+.live26-agenda .la-hero-btn:hover {
+  background: var(--green-dark);
+  border-color: var(--green-dark);
+  transform: translateY(-1px);
+}
+.live26-agenda .la-hero-btn-ghost {
+  display: inline-block;
+  background: rgba(0, 26, 40, 0.8);
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 13px 34px;
+  border-radius: 6px;
+  border: 1px solid #fff;
+  transition: background 0.2s, transform 0.15s;
+}
+.live26-agenda .la-hero-btn-ghost:hover {
+  background: rgba(0, 26, 40, 0.9);
+  transform: translateY(-1px);
 }
 .live26-agenda .la-hero-meta {
   display: inline-flex;
@@ -634,6 +681,15 @@
   }
   .live26-agenda .la-hero {
     padding: 52px 1.25rem 44px;
+  }
+  .live26-agenda .la-hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+    max-width: 280px;
+  }
+  .live26-agenda .la-hero-btn,
+  .live26-agenda .la-hero-btn-ghost {
+    text-align: center;
   }
   .live26-agenda .la-hero-meta {
     flex-wrap: wrap;

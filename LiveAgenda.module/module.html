@@ -37,6 +37,16 @@
       {% endif %}
       <h1>{{ module.hero_headline | replace("Agenda", "<span>Agenda</span>") }}</h1>
       {% if module.hero_subtext %}<p>{{ module.hero_subtext }}</p>{% endif %}
+      {% if (module.hero_btn_primary_text and module.hero_btn_primary_url.href) or (module.hero_btn_secondary_text and module.hero_btn_secondary_url.href) %}
+        <div class="la-hero-actions">
+          {% if module.hero_btn_primary_text and module.hero_btn_primary_url.href %}
+            <a href="{{ module.hero_btn_primary_url.href }}" class="la-hero-btn"{% if module.hero_btn_primary_url.type == 'EXTERNAL' %} target="_blank" rel="noopener"{% endif %}>{{ module.hero_btn_primary_text }}</a>
+          {% endif %}
+          {% if module.hero_btn_secondary_text and module.hero_btn_secondary_url.href %}
+            <a href="{{ module.hero_btn_secondary_url.href }}" class="la-hero-btn-ghost"{% if module.hero_btn_secondary_url.type == 'EXTERNAL' %} target="_blank" rel="noopener"{% endif %}>{{ module.hero_btn_secondary_text }}</a>
+          {% endif %}
+        </div>
+      {% endif %}
       <div class="la-hero-meta">
         {% if module.hero_date %}<span><strong>{{ module.hero_date }}</strong></span>{% endif %}
         {% if module.hero_date and module.hero_venue %}<span class="la-hero-meta-div"></span>{% endif %}

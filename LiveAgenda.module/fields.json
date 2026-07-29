@@ -106,6 +106,60 @@
     "default": "Three days of sessions, networking, and hands-on learning in Austin, Texas."
   },
   {
+    "id": "hero_btn_primary_text",
+    "name": "hero_btn_primary_text",
+    "label": "Hero Primary Button Text",
+    "required": false,
+    "locked": false,
+    "type": "text",
+    "default": "",
+    "help_text": "Green button under the subtext. Leave blank to hide."
+  },
+  {
+    "id": "hero_btn_primary_url",
+    "name": "hero_btn_primary_url",
+    "label": "Hero Primary Button URL",
+    "required": false,
+    "locked": false,
+    "supported_types": [
+      "EXTERNAL",
+      "CONTENT"
+    ],
+    "type": "url",
+    "default": {
+      "content_id": null,
+      "href": "",
+      "type": "EXTERNAL"
+    }
+  },
+  {
+    "id": "hero_btn_secondary_text",
+    "name": "hero_btn_secondary_text",
+    "label": "Hero Secondary Button Text",
+    "required": false,
+    "locked": false,
+    "type": "text",
+    "default": "",
+    "help_text": "White outline button beside the primary. Leave blank to hide."
+  },
+  {
+    "id": "hero_btn_secondary_url",
+    "name": "hero_btn_secondary_url",
+    "label": "Hero Secondary Button URL",
+    "required": false,
+    "locked": false,
+    "supported_types": [
+      "EXTERNAL",
+      "CONTENT"
+    ],
+    "type": "url",
+    "default": {
+      "content_id": null,
+      "href": "",
+      "type": "EXTERNAL"
+    }
+  },
+  {
     "id": "hero_date",
     "name": "hero_date",
     "label": "Event Dates",
